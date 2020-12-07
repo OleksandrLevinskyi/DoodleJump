@@ -13,15 +13,18 @@ namespace DoodleJump.Sprites
     {
         private const int DOODLE_XSPEED = 5;
         private const int GRAVITY = 30;
+        private const int NOSE_SIZE = 20;
 
-        private int jumpSpeed = 1000;
-        private bool inJump = false;
-        public bool InJump { get => inJump; set => inJump = value; }
+        private int jumpSpeed = 800;
+        private bool isJumping = false;
+        private bool isFalling = false;
         public int JumpSpeed { get => jumpSpeed; set => jumpSpeed = value; }
+        public bool IsJumping { get => isJumping; set => isJumping = value; }
+        public bool IsFalling { get => isFalling; set => isFalling = value; }
 
         public Doodle(Game game, SpriteBatch spriteBatch, Texture2D texture) : base(game, spriteBatch, texture)
         {
-            position = new Vector2((Shared.Stage.X + texture.Width) / 2, Shared.Stage.Y - texture.Height);
+            position = Vector2.Zero; // default
             speed = new Vector2(DOODLE_XSPEED, 0);
         }
 
@@ -36,6 +39,7 @@ namespace DoodleJump.Sprites
 
         public override void Update(GameTime gameTime)
         {
+            // manage keyboard arrow clicks
             KeyboardState ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Left))
             {
@@ -54,15 +58,20 @@ namespace DoodleJump.Sprites
                 }
             }
 
-            if (!inJump)
+            // manage jumping
+            if (!isJumping)
             {
                 speed.Y = -jumpSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                inJump = true;
+                isJumping = true;
+                isFalling = false;
             }
 
-            if (inJump)
+            if (isJumping)
             {
                 speed.Y += GRAVITY * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if(speed.Y >= 0) {
+                    isFalling = true;
+                }
             }
             else
             {
@@ -71,9 +80,19 @@ namespace DoodleJump.Sprites
 
             position.Y += speed.Y;
 
-            //inJump = position.Y<=700;
+            //isJumping = position.Y<=700;
 
             base.Update(gameTime);
+        }
+
+        public float GetLowerBound()
+        {
+            float lowerBound = position.Y + texture.Height;
+            return lowerBound;
+        }
+        public override Rectangle GetBound()
+        {
+            return new Rectangle((int)position.X - NOSE_SIZE, (int)position.Y, texture.Width, texture.Height);
         }
     }
 }

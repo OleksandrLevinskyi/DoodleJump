@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Images/platform.png</SourceFile>
-  <SourceTime>2020-12-04T05:58:19.708807-05:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/bin/Windows/Content/Images/platform.xnb</DestFile>
-  <DestTime>2020-12-04T06:01:28.536674-05:00</DestTime>
+  <SourceFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/platform.png</SourceFile>
+  <SourceTime>2020-12-06T22:09:56.9458074-05:00</SourceTime>
+  <DestFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Content/Images/platform.xnb</DestFile>
+  <DestTime>2020-12-06T22:21:08.7155109-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

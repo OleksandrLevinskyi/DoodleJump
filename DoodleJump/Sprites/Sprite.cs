@@ -11,12 +11,13 @@ namespace DoodleJump.Sprites
 {
     public abstract class Sprite : DrawableGameComponent
     {
-        internal SpriteBatch spriteBatch;
-        internal Texture2D texture;
-        internal Vector2 position;
-        internal Vector2 speed;
+        protected SpriteBatch spriteBatch;
+        protected Texture2D texture;
+        protected Vector2 position;
+        protected Vector2 speed;
 
         public Vector2 Position { get => position; set => position = value; }
+        public Texture2D Texture { get => texture; set => texture = value; }
 
         public Sprite(Game game, SpriteBatch spriteBatch, Texture2D texture) : base(game)
         {
@@ -24,7 +25,7 @@ namespace DoodleJump.Sprites
             this.texture = texture;
         }
 
-        public Rectangle GetBound()
+        public virtual Rectangle GetBound()
         {
             return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }

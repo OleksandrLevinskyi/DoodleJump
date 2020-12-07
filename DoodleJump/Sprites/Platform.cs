@@ -11,9 +11,12 @@ namespace DoodleJump.Sprites
 {
     public class Platform : Sprite
     {
-        public Platform(Game game, SpriteBatch spriteBatch, Texture2D texture) : base(game, spriteBatch, texture)
+        private static Random randomNumGen = new Random();
+        public Platform(Game game, SpriteBatch spriteBatch, Texture2D texture, float positionY) : base(game, spriteBatch, texture)
         {
-            position = new Vector2((Shared.Stage.X + texture.Width) / 2, Shared.Stage.Y - texture.Height);
+            this.position.Y = positionY;
+            this.position.X = randomNumGen.Next(0, (int)Shared.Stage.X - texture.Width);
+                //new Vector2((Shared.Stage.X + texture.Width) / 2, Shared.Stage.Y - texture.Height);
         }
 
         public override void Draw(GameTime gameTime)
@@ -28,6 +31,12 @@ namespace DoodleJump.Sprites
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+        }
+
+        public void UpdatePosition(float positionY)
+        {
+            this.position.Y = positionY;
+            this.position.X = randomNumGen.Next(0, (int)Shared.Stage.X - texture.Width);
         }
     }
 }

@@ -4,12 +4,12 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Fonts/chosenItemFont.spritefont</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Fonts/standardItemFont.spritefont</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Images/doodle.png</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Images/helpScene.PNG</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Images/platform.png</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Sounds/click.wav</File>
+    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/chosenItemFont.spritefont</File>
+    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/standardItemFont.spritefont</File>
+    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/doodle.png</File>
+    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/helpScene.PNG</File>
+    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/platform.png</File>
+    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/click.wav</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

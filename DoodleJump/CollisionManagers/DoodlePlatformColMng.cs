@@ -29,11 +29,15 @@ namespace DoodleJump.CollisionManagers
             Rectangle doodleBoundary = doodle.GetBound();
             Rectangle platformBoundary = platform.GetBound();
 
-            doodle.InJump = !doodleBoundary.Intersects(platformBoundary);
+            doodleBoundary = new Rectangle(doodleBoundary.X, 
+                doodleBoundary.Y + doodleBoundary.Height - platformBoundary.Height, 
+                doodleBoundary.Width, 
+                platformBoundary.Height);
 
-            if (doodleBoundary.Intersects(platformBoundary))
+            if (doodleBoundary.Intersects(platformBoundary) && doodle.IsFalling)
             {
                 hitSound.Play();
+                doodle.IsJumping = !doodle.IsJumping;
             }
 
             base.Update(gameTime);

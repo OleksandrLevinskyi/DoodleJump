@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/Sounds/click.wav</SourceFile>
+  <SourceFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/click.wav</SourceFile>
   <SourceTime>2020-12-03T15:42:07.2390159-05:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/click.xnb</DestFile>
-  <DestTime>2020-12-04T06:21:34.3458043-05:00</DestTime>
+  <DestFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/click.xnb</DestFile>
+  <DestTime>2020-12-06T22:20:57.8004696-05:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
