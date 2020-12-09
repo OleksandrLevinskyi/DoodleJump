@@ -69,3 +69,51 @@
 /processorParam:Quality=Best
 /build:Sounds/click.wav
 
+#begin Sounds/coin_pickup.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/coin_pickup.mp3
+
+#begin Sounds/game_over.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/game_over.mp3
+
+#begin Sounds/jetpack.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/jetpack.mp3
+
+#begin Sounds/jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/jump.wav
+
+#begin Sounds/monster_close.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/monster_close.mp3
+
+#begin Sounds/monster_crash.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/monster_crash.mp3
+
+#begin Sounds/spring.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/spring.mp3
+
+#begin Sounds/wood_platform_break.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/wood_platform_break.mp3
+

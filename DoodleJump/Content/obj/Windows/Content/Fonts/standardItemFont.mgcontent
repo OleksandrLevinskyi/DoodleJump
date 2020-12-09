@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/standardItemFont.spritefont</SourceFile>
+  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/standardItemFont.spritefont</SourceFile>
   <SourceTime>2020-12-04T03:24:31.3832228-05:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Content/Fonts/standardItemFont.xnb</DestFile>
-  <DestTime>2020-12-06T19:30:56.4522066-05:00</DestTime>
+  <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Content/Fonts/standardItemFont.xnb</DestFile>
+  <DestTime>2020-12-09T01:33:42.9753457-05:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

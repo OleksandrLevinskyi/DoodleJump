@@ -18,6 +18,7 @@ namespace DoodleJump.Sprites
         private int jumpSpeed = 800;
         private bool isJumping = false;
         private bool isFalling = false;
+
         public int JumpSpeed { get => jumpSpeed; set => jumpSpeed = value; }
         public bool IsJumping { get => isJumping; set => isJumping = value; }
         public bool IsFalling { get => isFalling; set => isFalling = value; }

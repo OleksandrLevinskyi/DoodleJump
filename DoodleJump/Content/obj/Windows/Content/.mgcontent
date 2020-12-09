@@ -4,14 +4,30 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/chosenItemFont.spritefont</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/standardItemFont.spritefont</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/doodle.png</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/helpScene.PNG</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/platform.png</File>
-    <File>C:/Users/User/Desktop/Level 3/PROG2370 Game Programming/Assingments/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/click.wav</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/chosenItemFont.spritefont</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Fonts/standardItemFont.spritefont</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/doodle.png</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/helpScene.PNG</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/platform.png</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/click.wav</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/coin_pickup.mp3</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/game_over.mp3</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/jetpack.mp3</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/jump.wav</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/monster_close.mp3</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/monster_crash.mp3</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/spring.mp3</File>
+    <File>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/wood_platform_break.mp3</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
