@@ -13,9 +13,11 @@ namespace DoodleJump.CollisionManagers
 {
     public class DoodlePlatformColMng : GameComponent
     {
-        private Doodle doodle;
-        private Platform platform;
-        private SoundEffect hitSound;
+        protected Doodle doodle;
+        protected Platform platform;
+        protected SoundEffect hitSound;
+
+        public Platform Platform { get => platform; }
 
         public DoodlePlatformColMng(Game game,Doodle doodle,Platform platform,SoundEffect hitSound) : base(game)
         {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/bullet.mp3</SourceFile>
-  <SourceTime>2020-12-09T01:02:01.1603778-05:00</SourceTime>
+  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/bullet.wav</SourceFile>
+  <SourceTime>2020-12-11T02:03:12.8963236-05:00</SourceTime>
   <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/bullet.xnb</DestFile>
-  <DestTime>2020-12-10T20:38:37.2423566-05:00</DestTime>
-  <Importer>Mp3Importer</Importer>
+  <DestTime>2020-12-11T03:18:14.9251047-05:00</DestTime>
+  <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
-  <Processor>SongProcessor</Processor>
+  <Processor>SoundEffectProcessor</Processor>
   <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
@@ -14,7 +14,5 @@
   </Parameters>
   <Dependencies />
   <BuildAsset />
-  <BuildOutput>
-    <string>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/bullet.wma</string>
-  </BuildOutput>
+  <BuildOutput />
 </PipelineBuildEvent>

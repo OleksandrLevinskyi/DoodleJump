@@ -39,6 +39,30 @@
 /processorParam:TextureFormat=Color
 /build:Images/bullet.png
 
+#begin Images/disappearing_platform.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/disappearing_platform.png
+
+#begin Images/disappearing_platform_spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/disappearing_platform_spritesheet.png
+
 #begin Images/doodle_asia_left.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -123,6 +147,42 @@
 /processorParam:TextureFormat=Color
 /build:Images/helpScene.PNG
 
+#begin Images/movingHor_platform.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/movingHor_platform.png
+
+#begin Images/movingVer_platform.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/movingVer_platform.png
+
+#begin Images/platform.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/platform.png
+
 #begin Images/platform.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -147,11 +207,41 @@
 /processorParam:TextureFormat=Color
 /build:Images/topbar.png
 
-#begin Sounds/bullet.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Images/wooden_platform.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/wooden_platform.png
+
+#begin Images/wooden_platfrom_spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/wooden_platfrom_spritesheet.png
+
+#begin Sounds/bullet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/bullet.mp3
+/build:Sounds/bullet.wav
+
+#begin Sounds/coin_collect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/coin_collect.wav
 
 #begin Sounds/coin_pickup.mp3
 /importer:Mp3Importer
@@ -159,23 +249,23 @@
 /processorParam:Quality=Best
 /build:Sounds/coin_pickup.mp3
 
-#begin Sounds/coin_pickup.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Sounds/disappearing_platform.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/coin_pickup.mp3
+/build:Sounds/disappearing_platform.wav
 
-#begin Sounds/game_over.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Sounds/game_over.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/game_over.mp3
+/build:Sounds/game_over.wav
 
-#begin Sounds/jetpack.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Sounds/jetpack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/jetpack.mp3
+/build:Sounds/jetpack.wav
 
 #begin Sounds/jump.wav
 /importer:WavImporter
@@ -183,27 +273,27 @@
 /processorParam:Quality=Best
 /build:Sounds/jump.wav
 
-#begin Sounds/monster_close.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Sounds/monster_close.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/monster_close.mp3
+/build:Sounds/monster_close.wav
 
-#begin Sounds/monster_crash.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Sounds/monster_crash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/monster_crash.mp3
+/build:Sounds/monster_crash.wav
 
-#begin Sounds/spring.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Sounds/spring.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/spring.mp3
+/build:Sounds/spring.wav
 
-#begin Sounds/wood_platform_break.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin Sounds/wood_platform_break.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/wood_platform_break.mp3
+/build:Sounds/wood_platform_break.wav
 
