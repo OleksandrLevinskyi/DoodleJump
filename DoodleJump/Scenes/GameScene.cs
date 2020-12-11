@@ -12,7 +12,7 @@ namespace DoodleJump
     public abstract class GameScene : DrawableGameComponent
     {
         private List<GameComponent> components;
-        internal SpriteBatch spriteBatch;
+        protected SpriteBatch spriteBatch;
 
         public List<GameComponent> Components { get => components; set => components = value; }
 

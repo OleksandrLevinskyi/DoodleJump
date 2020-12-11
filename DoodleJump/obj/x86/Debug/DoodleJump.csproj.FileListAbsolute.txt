@@ -58,7 +58,6 @@ C:\Users\User\Desktop\Level 3\PROG2370 Game Programming\Assingments\Final Projec
 C:\Users\User\Desktop\Level 3\PROG2370 Game Programming\Assingments\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.pdb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Fonts\chosenItemFont.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Fonts\standardItemFont.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\click.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\coin_pickup.wma
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\coin_pickup.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\game_over.wma
@@ -74,7 +73,6 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\spring.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\wood_platform_break.wma
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\wood_platform_break.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\helpScene.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\platform.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\DoodleJump.exe
@@ -100,3 +98,13 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.csproj.CopyComplete
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.exe
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.pdb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_asia_left.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_asia_right.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_asia_up.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_left.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_right.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_up.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\topbar.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\bullet.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\bullet.wma
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\bullet.xnb

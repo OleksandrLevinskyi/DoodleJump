@@ -22,14 +22,22 @@ namespace DoodleJump
         private HelpScene helpScene;
         private HighScoreScene highScoreScene;
         private StoreScene storeScene;
+        private GameOverScene gameOverScene;
 
-        private enum MenuItems
+        private KeyboardState oldState;
+
+        private enum MainMenu
         {
             Start,
             Help,
             HighScore,
             Store,
             Quit
+        }
+        private enum GameOverMenu
+        {
+            PlayAgain,
+            MainMenu
         }
         public DoodleJumpGame()
         {
@@ -81,6 +89,9 @@ namespace DoodleJump
             storeScene = new StoreScene(this, spriteBatch);
             this.Components.Add(storeScene);
 
+            gameOverScene = new GameOverScene(this, spriteBatch);
+            this.Components.Add(gameOverScene);
+
             // show start scene
             startScene.Show();
         }
@@ -109,27 +120,28 @@ namespace DoodleJump
             KeyboardState ks = Keyboard.GetState();
             if (startScene.Enabled)
             {
-                selectedIdx = startScene.Menu.SelectedIdx;
-                if (ks.IsKeyDown(Keys.Enter))
+                if (oldState.IsKeyDown(Keys.Enter) && ks.IsKeyUp(Keys.Enter))
                 {
+                    selectedIdx = startScene.Menu.SelectedIdx;
+                    System.Console.WriteLine(selectedIdx);
                     startScene.Hide();
-                    if (selectedIdx == (int)MenuItems.Start)
+                    if (selectedIdx == (int)MainMenu.Start)
                     {
                         actionScene.Show();
                     }
-                    if (selectedIdx == (int)MenuItems.Help)
+                    else if (selectedIdx == (int)MainMenu.Help)
                     {
                         helpScene.Show();
                     }
-                    if (selectedIdx == (int)MenuItems.HighScore)
+                    else if (selectedIdx == (int)MainMenu.HighScore)
                     {
                         highScoreScene.Show();
                     }
-                    if (selectedIdx == (int)MenuItems.Store)
+                    else if (selectedIdx == (int)MainMenu.Store)
                     {
                         storeScene.Show();
                     }
-                    if (selectedIdx == (int)MenuItems.Quit)
+                    else if (selectedIdx == (int)MainMenu.Quit)
                     {
                         Exit();
                     } 
@@ -137,10 +149,9 @@ namespace DoodleJump
             }
             if (actionScene.Enabled)
             {
-                if (ks.IsKeyDown(Keys.Escape))
+                if (actionScene.ShowGameOver)
                 {
-                    actionScene.Hide();
-                    startScene.Show();
+                    gameOverScene.Show();
                 }
             }
             if (helpScene.Enabled)
@@ -151,6 +162,28 @@ namespace DoodleJump
                     startScene.Show();
                 }
             }
+            if (gameOverScene.Enabled)
+            {
+                if (oldState.IsKeyDown(Keys.Enter) && ks.IsKeyUp(Keys.Enter))
+                {
+                    selectedIdx = gameOverScene.Menu.SelectedIdx;
+                    System.Console.WriteLine(selectedIdx);
+                    gameOverScene.Hide();
+                    if (selectedIdx == (int)GameOverMenu.PlayAgain)
+                    {
+                        actionScene.Hide();
+                        RebootActionScene();
+                        actionScene.Show();
+                    }
+                    else if (selectedIdx == (int)GameOverMenu.MainMenu)
+                    {
+                        actionScene.Hide();
+                        RebootGameOverScene();
+                        startScene.Show();
+                    }
+                }
+            }
+            oldState = ks;
 
             base.Update(gameTime);
         }
@@ -166,6 +199,20 @@ namespace DoodleJump
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+
+        private void RebootActionScene()
+        {
+            this.Components.Remove(actionScene);
+            actionScene = new ActionScene(this, spriteBatch);
+            this.Components.Add(actionScene);
+        }
+        private void RebootGameOverScene()
+        {
+            this.Components.Remove(gameOverScene);
+            gameOverScene = new GameOverScene(this, spriteBatch);
+            this.Components.Add(gameOverScene);
         }
     }
 }

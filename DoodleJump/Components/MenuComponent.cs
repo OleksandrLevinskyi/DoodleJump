@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DoodleJump.Components.StartScene
+namespace DoodleJump.Components
 {
     public class MenuComponent : DrawableGameComponent
     {
@@ -19,7 +19,9 @@ namespace DoodleJump.Components.StartScene
         private Color standardItemColor = Color.Black;
         private Color chosenItemColor = Color.Red;
         private KeyboardState oldState;
+
         public int SelectedIdx { get => selectedIdx; set => selectedIdx = value; }
+        public Vector2 Position { get => position; set => position = value; }
 
         public MenuComponent(Game game, SpriteBatch spriteBatch,
             SpriteFont standardItemFont, SpriteFont chosenItemFont,

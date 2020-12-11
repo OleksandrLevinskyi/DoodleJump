@@ -42,7 +42,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CollisionManagers\DoodlePlatformColMng.cs" />
-    <Compile Include="Components\StartScene\MenuComponent.cs" />
+    <Compile Include="Scenes\GameOverScene.cs" />
+    <Compile Include="Components\ActionScene\TopBar.cs" />
+    <Compile Include="Components\BasicString.cs" />
+    <Compile Include="Components\InputManager.cs" />
+    <Compile Include="Components\MenuComponent.cs" />
     <Compile Include="DoodleJumpGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +57,7 @@
     <Compile Include="Scenes\StartScene.cs" />
     <Compile Include="Scenes\StoreScene.cs" />
     <Compile Include="Shared.cs" />
+    <Compile Include="Sprites\Bullet.cs" />
     <Compile Include="Sprites\Doodle.cs" />
     <Compile Include="Sprites\Platform.cs" />
     <Compile Include="Sprites\Sprite.cs" />
@@ -70,6 +75,9 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\StartScene\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
