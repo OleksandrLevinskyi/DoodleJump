@@ -44,8 +44,6 @@ namespace DoodleJump.Sprites
                 spriteBatch.Draw(texture, position, frames[frameIdx], Color.White);
             }
             spriteBatch.End();
-
-            base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)

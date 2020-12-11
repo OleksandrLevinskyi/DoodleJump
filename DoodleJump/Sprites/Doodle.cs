@@ -54,15 +54,6 @@ namespace DoodleJump.Sprites
             this.textureUp = textureUp;
         }
 
-        public override void Draw(GameTime gameTime)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, position, Color.White);
-            spriteBatch.End();
-
-            base.Draw(gameTime);
-        }
-
         public override void Update(GameTime gameTime)
         {
             if (isCount)

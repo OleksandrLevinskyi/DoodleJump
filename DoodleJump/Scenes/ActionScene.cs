@@ -35,12 +35,13 @@ namespace DoodleJump.Scenes
         private const int GAP_DIFF = 10;
         private const int INIT_PLATFORM_GAP = 60; // initial maximum gap between platforms
         private const int BULLET_COUNT = 5;
-        private const double COEFFICIENT = 1.000025;
-        private const int MAX_CHANGE_BOUND = 30000;
+        private const double COEFFICIENT = 1.000035;
+        private const int MAX_CHANGE_BOUND = 20000;
         private const int WOOD_ANIM_ROWS = 2;
         private const int WOOD_ANIM_COLS = 3;
         private const int DIS_ANIM_DIM = 4;
-        private const int ANIMATION_DELAY = 10;
+        private const int ANIMATION_DELAY = 5;
+        private const int SPEED = 2;
 
         private double maxPlatfromGap = 0;
 
@@ -224,13 +225,17 @@ namespace DoodleJump.Scenes
                 for (int i = 0; i < platforms.Count; i++)
                 {
                     platforms[i].Position = new Vector2(platforms[i].Position.X, platforms[i].Position.Y + MOVEMENT);
-                    // if platform is out of the screen
-                    if (platforms[i].Position.Y >= Shared.Stage.Y)
-                    {
-                        platforms[i] = GetNewPlatfrom(platforms[i]);
-                        doodlePlatformColMngs[i] = GetNewColMng(platforms[i], i);
-                        topIdx = i;
-                    }
+                }
+            }
+            for (int i = 0; i < platforms.Count; i++)
+            {
+                // if platform is out of the screen
+                if (platforms[i].Position.Y + platforms[i].Texture.Height >= Shared.Stage.Y)
+                {
+                    PlatfromType oldType = platforms[i].Type;
+                    platforms[i] = GetNewPlatfrom(platforms[i]);
+                    doodlePlatformColMngs[i] = GetNewColMng(platforms[i], i, oldType);
+                    topIdx = i;
                 }
             }
         }
@@ -255,35 +260,85 @@ namespace DoodleJump.Scenes
             }
             platformGap = randomNumGen.Next((int)maxPlatfromGap - GAP_DIFF, (int)maxPlatfromGap);
 
+            currPlatform.UpdatePosition(platforms[topIdx].Position.Y - platformGap);
+
             // adjust platform type
-            //currPlatform = new Platform(game, spriteBatch, woodenPlatformTexture, platforms[topIdx].Position.Y - platformGap, PlatfromType.Wooden);
-            currPlatform = new Platform(game, spriteBatch, disappearingPlatformTexture, platforms[topIdx].Position.Y - platformGap, PlatfromType.Disappearing);
-            this.Components.Add(currPlatform);
-            //currPlatform.UpdatePosition(platforms[topIdx].Position.Y - platformGap);
+            currPlatform.Type = GetNewPlatformType();
+            currPlatform.Speed = Vector2.Zero;
+            switch (currPlatform.Type)
+            {
+                case PlatfromType.Original:
+                    currPlatform.Texture = ordinaryPlatformTexture;
+                    break;
+                case PlatfromType.MovableHor:
+                    currPlatform.Texture = movingHorPlatformTexture;
+                    currPlatform.Speed = new Vector2(SPEED, 0);
+                    break;
+                case PlatfromType.MovableVer:
+                    currPlatform.Texture = movingVerPlatformTexture;
+                    currPlatform.Speed = new Vector2(0, SPEED);
+                    break;
+                case PlatfromType.Wooden:
+                    currPlatform.Texture = woodenPlatformTexture;
+                    break;
+                case PlatfromType.Disappearing:
+                    currPlatform.Texture = disappearingPlatformTexture;
+                    break;
+                default:
+                    break;
+            }
 
             return currPlatform;
         }
 
-        private DoodlePlatformColMng GetNewColMng(Platform newPlatfrom, int idx)
+        private DoodlePlatformColMng GetNewColMng(Platform platform, int idx, PlatfromType oldType)
         {
             DoodlePlatformColMng colMng = doodlePlatformColMngs[idx];
-            if (doodlePlatformColMngs[idx].Platform.Type != newPlatfrom.Type)
+            if (oldType != platform.Type)
             {
-                switch (newPlatfrom.Type)
+                this.Components.Remove(doodlePlatformColMngs[idx]);
+                switch (platform.Type)
                 {
                     case PlatfromType.Wooden:
-                        colMng = new DoodleAnimatedPlatfromColMng(game, doodle, newPlatfrom, doodleWoodenPlatformHitSound, woodPlatAnim);
+                        colMng = new DoodleAnimatedPlatfromColMng(game, doodle, platform, doodleWoodenPlatformHitSound, woodPlatAnim);
                         break;
                     case PlatfromType.Disappearing:
-                        colMng = new DoodleAnimatedPlatfromColMng(game, doodle, newPlatfrom, doodleDisappearingPlatformHitSound, disapPlatAnim);
+                        colMng = new DoodleAnimatedPlatfromColMng(game, doodle, platform, doodleDisappearingPlatformHitSound, disapPlatAnim);
                         break;
                     default:
-                        colMng = new DoodlePlatformColMng(game, doodle, newPlatfrom, doodlePlatformHitSound);
+                        colMng = new DoodlePlatformColMng(game, doodle, platform, doodlePlatformHitSound);
                         break;
                 }
                 this.Components.Add(colMng);
             }
             return colMng;
+        }
+
+        private PlatfromType GetNewPlatformType()
+        {
+            int type;
+            List<PlatfromType> possiblePlatfromTypes = new List<PlatfromType>();
+
+            // all heights - allow original, moving horizontally
+            possiblePlatfromTypes.Add(PlatfromType.Original);
+            possiblePlatfromTypes.Add(PlatfromType.MovableHor);
+
+            // up to 10k in score & the previous one is not wooden - allow breaking
+            if (MAX_CHANGE_BOUND / 2 <= score && platforms[topIdx].Type != PlatfromType.Wooden)
+            {
+                possiblePlatfromTypes.Add(PlatfromType.Wooden);
+            }
+
+            // if above 20k - allow movable & disappearing
+            if(score >= MAX_CHANGE_BOUND / 2)
+            {
+                possiblePlatfromTypes.Add(PlatfromType.MovableVer);
+                possiblePlatfromTypes.Add(PlatfromType.Disappearing);
+            }
+
+            type = randomNumGen.Next(0, possiblePlatfromTypes.Count);
+
+            return (PlatfromType)type;
         }
     }
 }

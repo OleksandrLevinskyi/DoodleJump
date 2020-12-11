@@ -20,6 +20,8 @@ namespace DoodleJump.Sprites
 
     public class Platform : Sprite
     {
+        private const int MOVE_RANGE = 40;
+        private Vector2 initPosition;
         private PlatfromType type;
         private static Random randomNumGen = new Random();
 
@@ -30,20 +32,30 @@ namespace DoodleJump.Sprites
             this.position.Y = positionY;
             this.position.X = randomNumGen.Next(0, (int)Shared.Stage.X - texture.Width);
 
+            initPosition = position;
+
             this.type = type;
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, position, Color.White);
-            spriteBatch.End();
-
-            base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (this.type == PlatfromType.MovableHor)
+            {
+                if (position.X <= 0 || position.X + texture.Width >= Shared.Stage.X)
+                {
+                    speed = -speed;
+                }
+                position += speed;
+            }
+            else if (this.type == PlatfromType.MovableVer)
+            {
+                if(position.Y - initPosition.Y>=MOVE_RANGE || initPosition.Y-position.Y >= MOVE_RANGE)
+                {
+                    speed = -speed;
+                }
+                position += speed;
+            }
+
             base.Update(gameTime);
         }
 

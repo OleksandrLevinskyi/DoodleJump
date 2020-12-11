@@ -11,15 +11,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.CollisionManagers
 {
-    public class DoodlePlatformColMng : GameComponent
+    public class DoodlePlatformColMng : DoodleColMng
     {
-        protected Doodle doodle;
         protected Platform platform;
-        protected SoundEffect hitSound;
 
         public Platform Platform { get => platform; }
 
-        public DoodlePlatformColMng(Game game,Doodle doodle,Platform platform,SoundEffect hitSound) : base(game)
+        public DoodlePlatformColMng(Game game, Doodle doodle, Platform platform, SoundEffect hitSound) : base(game, doodle, hitSound)
         {
             this.doodle = doodle;
             this.platform = platform;
@@ -34,7 +32,7 @@ namespace DoodleJump.CollisionManagers
             if (doodleFeetBoundary.Intersects(platformBoundary) && doodle.IsFalling)
             {
                 hitSound.Play();
-                doodle.IsJumping = !doodle.IsJumping;
+                doodle.IsJumping = false;
             }
 
             base.Update(gameTime);

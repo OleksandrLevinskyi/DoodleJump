@@ -18,15 +18,6 @@ namespace DoodleJump.Sprites
             speed = new Vector2(0, BULLET_YSPEED);
         }
 
-        public override void Draw(GameTime gameTime)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, position, Color.White);
-            spriteBatch.End();
-
-            base.Draw(gameTime);
-        }
-
         public override void Update(GameTime gameTime)
         {
             if (position.Y <= 0)

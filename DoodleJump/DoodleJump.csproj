@@ -41,6 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CollisionManagers\DoodleBoosterColMng.cs" />
+    <Compile Include="CollisionManagers\DoodleCoinColMng.cs" />
+    <Compile Include="CollisionManagers\DoodleColMng.cs" />
+    <Compile Include="CollisionManagers\DoodleMonsterColMng.cs" />
     <Compile Include="CollisionManagers\DoodlePlatformColMng.cs" />
     <Compile Include="CollisionManagers\DoodleAnimatedPlatfromColMng.cs" />
     <Compile Include="Scenes\GameOverScene.cs" />
@@ -58,7 +62,9 @@
     <Compile Include="Scenes\StartScene.cs" />
     <Compile Include="Scenes\StoreScene.cs" />
     <Compile Include="Shared.cs" />
+    <Compile Include="Sprites\Booster.cs" />
     <Compile Include="Sprites\Bullet.cs" />
+    <Compile Include="Sprites\Coin.cs" />
     <Compile Include="Sprites\Doodle.cs" />
     <Compile Include="Sprites\Platform.cs" />
     <Compile Include="Sprites\Sprite.cs" />

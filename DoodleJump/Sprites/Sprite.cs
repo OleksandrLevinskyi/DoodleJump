@@ -18,11 +18,21 @@ namespace DoodleJump.Sprites
 
         public Vector2 Position { get => position; set => position = value; }
         public Texture2D Texture { get => texture; set => texture = value; }
+        public Vector2 Speed { get => speed; set => speed = value; }
 
         public Sprite(Game game, SpriteBatch spriteBatch, Texture2D texture) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.texture = texture;
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.End();
+
+            base.Draw(gameTime);
         }
 
         public virtual Rectangle GetBound()
