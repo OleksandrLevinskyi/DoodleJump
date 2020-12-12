@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/doodle_asia_up.png</SourceFile>
-  <SourceTime>2020-12-10T13:21:10.5247349-05:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Images/doodle_asia_up.xnb</DestFile>
-  <DestTime>2020-12-11T03:18:12.4800291-05:00</DestTime>
+  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/spring_spritesheet.png</SourceFile>
+  <SourceTime>2020-12-11T20:03:17.2946858-05:00</SourceTime>
+  <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Images/spring_spritesheet.xnb</DestFile>
+  <DestTime>2020-12-11T20:33:23.2310104-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

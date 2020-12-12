@@ -34,14 +34,16 @@ namespace DoodleJump.Scenes
         private const int GAME_OVER_DURATION = 60;
         private const int GAP_DIFF = 10;
         private const int INIT_PLATFORM_GAP = 60; // initial maximum gap between platforms
-        private const int BULLET_COUNT = 5;
+        private const int SPRITE_COUNT = 5;
         private const double COEFFICIENT = 1.000035;
         private const int MAX_CHANGE_BOUND = 20000;
+        private const int SPRING_ANIM_ROWS = 2;
+        private const int SPRING_ANIM_COLS = 5;
         private const int WOOD_ANIM_ROWS = 2;
         private const int WOOD_ANIM_COLS = 3;
         private const int DIS_ANIM_DIM = 4;
         private const int ANIMATION_DELAY = 5;
-        private const int SPEED = 2;
+        private const int SPEED = 1;
 
         private double maxPlatfromGap = 0;
 
@@ -49,9 +51,11 @@ namespace DoodleJump.Scenes
         private KeyboardState oldState;
         private Game game;
         private Doodle doodle;
+        private Booster booster;
         private TopBar topbar;
         private static Random randomNumGen = new Random();
 
+        private DoodleBoosterColMng doodleBoosterColMng;
         private List<Platform> platforms;
         private List<DoodlePlatformColMng> doodlePlatformColMngs;
         private List<Bullet> bullets;
@@ -62,6 +66,9 @@ namespace DoodleJump.Scenes
         private SoundEffect doodleWoodenPlatformHitSound;
         private SoundEffect doodleDisappearingPlatformHitSound;
 
+        private SoundEffect springSound;
+
+        private Animation springAnim;
         private Animation woodPlatAnim;
         private Animation disapPlatAnim;
 
@@ -70,6 +77,12 @@ namespace DoodleJump.Scenes
         private Texture2D woodenPlatformTexture;
         private Texture2D movingVerPlatformTexture;
         private Texture2D disappearingPlatformTexture;
+
+        private Texture2D springTexture;
+        private Texture2D rocketTexture;
+        private Texture2D doodleRocketTexture;
+
+        private Texture2D monsterTexture;
 
         public bool ShowGameOver { get; set; }
 
@@ -92,12 +105,16 @@ namespace DoodleJump.Scenes
             movingVerPlatformTexture = game.Content.Load<Texture2D>("Images/movingVer_platform");
             disappearingPlatformTexture = game.Content.Load<Texture2D>("Images/disappearing_platform");
 
+            monsterTexture = game.Content.Load<Texture2D>("Images/monster");
+
+            rocketTexture = game.Content.Load<Texture2D>("Images/rocket");
+            doodleRocketTexture = game.Content.Load<Texture2D>("Images/doodle_rocket");
+
             // create a doodle
             Texture2D doodleTextureRight = game.Content.Load<Texture2D>("Images/doodle_right");
             Texture2D doodleTextureLeft = game.Content.Load<Texture2D>("Images/doodle_left");
             Texture2D doodleTextureUp = game.Content.Load<Texture2D>("Images/doodle_up");
-            Texture2D bulletTexture = game.Content.Load<Texture2D>("Images/bullet");
-            doodle = new Doodle(game, spriteBatch, bulletTexture, doodleTextureRight, doodleTextureLeft, doodleTextureUp);
+            doodle = new Doodle(game, spriteBatch, doodleTextureRight, doodleTextureLeft, doodleTextureUp);
 
             // generate platforms & collision managers
             for (int i = 0; i < PLATFORM_COUNT; i++)
@@ -115,13 +132,30 @@ namespace DoodleJump.Scenes
                 doodlePlatformColMngs.Add(doodlePlatformColMng);
             }
 
-            for (int i = 0; i < BULLET_COUNT; i++)
+            Texture2D bulletTexture = game.Content.Load<Texture2D>("Images/bullet");
+            // generate bullets
+            for (int i = 0; i < SPRITE_COUNT; i++)
             {
                 Bullet bullet = new Bullet(game, spriteBatch, bulletTexture);
                 bullets.Add(bullet);
                 this.Components.Add(bullet);
             }
 
+            // spring booster
+            springTexture = game.Content.Load<Texture2D>("Images/spring");
+            booster = new Booster(game, spriteBatch, springTexture, BoosterType.Spring);
+            this.Components.Add(booster);
+
+            Texture2D springSpriteSheet = game.Content.Load<Texture2D>("Images/spring_spritesheet");
+            springAnim = new Animation(game, spriteBatch, springSpriteSheet, SPRING_ANIM_ROWS, SPRING_ANIM_COLS, ANIMATION_DELAY);
+            this.Components.Add(springAnim);
+
+            springSound = game.Content.Load<SoundEffect>("Sounds/spring");
+            doodleBoosterColMng = new DoodleBoosterColMng(game, doodle, springSound, booster);
+            doodleBoosterColMng.BoosterAnimation = springAnim;
+            this.Components.Add(doodleBoosterColMng);
+
+            // animations
             Texture2D woodenPlatformSpriteSheet = game.Content.Load<Texture2D>("Images/wooden_platfrom_spritesheet");
             woodPlatAnim = new Animation(game, spriteBatch, woodenPlatformSpriteSheet, WOOD_ANIM_ROWS, WOOD_ANIM_COLS, ANIMATION_DELAY);
             this.Components.Add(woodPlatAnim);
@@ -224,6 +258,10 @@ namespace DoodleJump.Scenes
 
                 for (int i = 0; i < platforms.Count; i++)
                 {
+                    if (platforms[i].Type == PlatfromType.MovableVer)
+                    {
+                        platforms[i].UpdateBounds(MOVEMENT);
+                    }
                     platforms[i].Position = new Vector2(platforms[i].Position.X, platforms[i].Position.Y + MOVEMENT);
                 }
             }
@@ -265,10 +303,23 @@ namespace DoodleJump.Scenes
             // adjust platform type
             currPlatform.Type = GetNewPlatformType();
             currPlatform.Speed = Vector2.Zero;
+
+            // check boosters
+            if(booster.MasterPlatform == currPlatform)
+            {
+                booster.IsUsed = false;
+                booster.MasterPlatform = null;
+            }
+
             switch (currPlatform.Type)
             {
                 case PlatfromType.Original:
                     currPlatform.Texture = ordinaryPlatformTexture;
+                    if (!booster.IsUsed)
+                    {
+                        booster.MasterPlatform = currPlatform;//////////////////////////////////////////////
+                        booster.IsUsed = true;
+                    }
                     break;
                 case PlatfromType.MovableHor:
                     currPlatform.Texture = movingHorPlatformTexture;
@@ -316,29 +367,29 @@ namespace DoodleJump.Scenes
 
         private PlatfromType GetNewPlatformType()
         {
-            int type;
+            int typeIdx;
             List<PlatfromType> possiblePlatfromTypes = new List<PlatfromType>();
 
-            // all heights - allow original, moving horizontally
+            // all heights - allow original
             possiblePlatfromTypes.Add(PlatfromType.Original);
             possiblePlatfromTypes.Add(PlatfromType.MovableHor);
 
             // up to 10k in score & the previous one is not wooden - allow breaking
-            if (MAX_CHANGE_BOUND / 2 <= score && platforms[topIdx].Type != PlatfromType.Wooden)
+            if (MAX_CHANGE_BOUND / 2 >= score && platforms[topIdx].Type != PlatfromType.Wooden)
             {
                 possiblePlatfromTypes.Add(PlatfromType.Wooden);
             }
 
-            // if above 20k - allow movable & disappearing
-            if(score >= MAX_CHANGE_BOUND / 2)
+            // if above 10k - allow movable & disappearing
+            if (score >= MAX_CHANGE_BOUND / 2)
             {
                 possiblePlatfromTypes.Add(PlatfromType.MovableVer);
                 possiblePlatfromTypes.Add(PlatfromType.Disappearing);
             }
 
-            type = randomNumGen.Next(0, possiblePlatfromTypes.Count);
+            typeIdx = randomNumGen.Next(0, possiblePlatfromTypes.Count);
 
-            return (PlatfromType)type;
+            return possiblePlatfromTypes[typeIdx];
         }
     }
 }

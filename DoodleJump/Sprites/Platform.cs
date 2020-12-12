@@ -20,19 +20,23 @@ namespace DoodleJump.Sprites
 
     public class Platform : Sprite
     {
-        private const int MOVE_RANGE = 40;
-        private Vector2 initPosition;
-        private PlatfromType type;
         private static Random randomNumGen = new Random();
+        private const int MOVE_RANGE = 40;
+        private float topBound = 0;
+        private float bottomBound = 0;
+        private PlatfromType type;
 
         public PlatfromType Type { get => type; set => type = value; }
+        public float TopBound { get => topBound; set => topBound = value; }
+        public float BottomBound { get => bottomBound; set => bottomBound = value; }
 
         public Platform(Game game, SpriteBatch spriteBatch, Texture2D texture, float positionY, PlatfromType type = PlatfromType.Original) : base(game, spriteBatch, texture)
         {
             this.position.Y = positionY;
             this.position.X = randomNumGen.Next(0, (int)Shared.Stage.X - texture.Width);
 
-            initPosition = position;
+            topBound = position.Y - MOVE_RANGE;
+            bottomBound = position.Y + MOVE_RANGE;
 
             this.type = type;
         }
@@ -49,7 +53,7 @@ namespace DoodleJump.Sprites
             }
             else if (this.type == PlatfromType.MovableVer)
             {
-                if(position.Y - initPosition.Y>=MOVE_RANGE || initPosition.Y-position.Y >= MOVE_RANGE)
+                if (position.Y <= topBound || position.Y >= bottomBound)
                 {
                     speed = -speed;
                 }
@@ -63,6 +67,15 @@ namespace DoodleJump.Sprites
         {
             this.position.Y = positionY;
             this.position.X = randomNumGen.Next(0, (int)Shared.Stage.X - texture.Width);
+
+            topBound = position.Y - MOVE_RANGE;
+            bottomBound = position.Y + MOVE_RANGE;
+        }
+
+        public void UpdateBounds(int movement)
+        {
+            topBound += movement;
+            bottomBound += movement;
         }
     }
 }

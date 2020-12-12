@@ -18,6 +18,10 @@ namespace DoodleJump.Sprites
         private const int FEET_HEIGHT = 12;
         private const int FEET_GAP = 7;
         private const int DELAY = 10;
+        public const int INIT_JUMPSPEED = 800;
+
+        private const int SPRING_BOOST_JUMPSPEED = 1200;
+        private const int SPRING_BOOST_DELAY = 60;
 
         private enum MovementDirection
         {
@@ -26,7 +30,7 @@ namespace DoodleJump.Sprites
             Up
         }
 
-        private int jumpSpeed = 800;
+        private int jumpSpeed = INIT_JUMPSPEED;
         private bool isJumping = false;
         private bool isFalling = false;
 
@@ -36,6 +40,8 @@ namespace DoodleJump.Sprites
         private Texture2D textureUp;
         private int count = 0;
         private bool isCount = false;
+        private int boostCount = 0;
+        private bool isBoostCount = false;
 
         private MovementDirection movementDirection = MovementDirection.Right;
 
@@ -43,7 +49,7 @@ namespace DoodleJump.Sprites
         public bool IsJumping { get => isJumping; set => isJumping = value; }
         public bool IsFalling { get => isFalling; set => isFalling = value; }
 
-        public Doodle(Game game, SpriteBatch spriteBatch, Texture2D bulletTexture,
+        public Doodle(Game game, SpriteBatch spriteBatch,
             Texture2D textureRight, Texture2D textureLeft, Texture2D textureUp) : base(game, spriteBatch, textureRight)
         {
             position = Vector2.Zero; // default
@@ -83,6 +89,7 @@ namespace DoodleJump.Sprites
                 this.texture = textureRight;
                 movementDirection = MovementDirection.Right;
             }
+
             if (oldState.IsKeyUp(Keys.Space) && ks.IsKeyDown(Keys.Space))
             {
                 this.texture = textureUp;
@@ -123,9 +130,25 @@ namespace DoodleJump.Sprites
 
             position.Y += speed.Y;
 
-            //isJumping = position.Y<=700;
+            // counters for boosters
+            if (isBoostCount)
+            {
+                boostCount++;
+            }
+            if (boostCount > SPRING_BOOST_DELAY)
+            {
+                this.JumpSpeed = INIT_JUMPSPEED;
+                isBoostCount = false;
+                boostCount = 0;
+            }
 
             base.Update(gameTime);
+        }
+
+        public void SpringBoost()
+        {
+            this.JumpSpeed = SPRING_BOOST_JUMPSPEED;
+            isBoostCount = true;
         }
 
         public float GetLowerBound()

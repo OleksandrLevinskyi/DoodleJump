@@ -42,7 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CollisionManagers\DoodleBoosterColMng.cs" />
-    <Compile Include="CollisionManagers\DoodleCoinColMng.cs" />
     <Compile Include="CollisionManagers\DoodleColMng.cs" />
     <Compile Include="CollisionManagers\DoodleMonsterColMng.cs" />
     <Compile Include="CollisionManagers\DoodlePlatformColMng.cs" />

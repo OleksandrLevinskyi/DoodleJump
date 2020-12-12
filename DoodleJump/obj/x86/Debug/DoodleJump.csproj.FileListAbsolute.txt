@@ -92,9 +92,6 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.csproj.CopyComplete
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.exe
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.pdb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_asia_left.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_asia_right.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_asia_up.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_left.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_right.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_up.xnb
@@ -109,3 +106,8 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\wooden_platform.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\wooden_platfrom_spritesheet.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\disappearing_platform_spritesheet.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_rocket.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\monster.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\rocket.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\spring.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\spring_spritesheet.xnb
