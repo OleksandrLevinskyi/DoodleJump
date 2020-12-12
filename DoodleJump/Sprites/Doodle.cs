@@ -20,8 +20,8 @@ namespace DoodleJump.Sprites
         private const int DELAY = 10;
         public const int INIT_JUMPSPEED = 800;
 
-        private const int SPRING_BOOST_JUMPSPEED = 1200;
-        private const int SPRING_BOOST_DELAY = 60;
+        private const int SPRING_BOOST_JUMPSPEED = 1300;
+        private const int SPRING_BOOST_DELAY = 20;
 
         private enum MovementDirection
         {
@@ -130,7 +130,7 @@ namespace DoodleJump.Sprites
 
             position.Y += speed.Y;
 
-            // counters for boosters
+            // counter for boosters
             if (isBoostCount)
             {
                 boostCount++;

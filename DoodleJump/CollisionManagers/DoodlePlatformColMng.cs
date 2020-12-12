@@ -26,16 +26,19 @@ namespace DoodleJump.CollisionManagers
 
         public override void Update(GameTime gameTime)
         {
-            Rectangle doodleFeetBoundary = doodle.GetFeetBound();
-            Rectangle platformBoundary = platform.GetBound();
-
-            if (doodleFeetBoundary.Intersects(platformBoundary) && doodle.IsFalling)
+            if (Activated)
             {
-                hitSound.Play();
-                doodle.IsJumping = false;
-            }
+                Rectangle doodleFeetBoundary = doodle.GetFeetBound();
+                Rectangle platformBoundary = platform.GetBound();
 
-            base.Update(gameTime);
+                if (doodleFeetBoundary.Intersects(platformBoundary) && doodle.IsFalling)
+                {
+                    hitSound.Play();
+                    doodle.IsJumping = false;
+                }
+
+                base.Update(gameTime); 
+            }
         }
     }
 }

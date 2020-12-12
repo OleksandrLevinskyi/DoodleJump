@@ -30,7 +30,7 @@ namespace DoodleJump.Scenes
         private const int MOVEMENT = 5;
         private const int FALL = 40;
         private const int PLATFORM_COUNT = 20;
-        private const int INIT_START_POINT = 20;
+        private const int INIT_START_POINT = 30;
         private const int GAME_OVER_DURATION = 60;
         private const int GAP_DIFF = 10;
         private const int INIT_PLATFORM_GAP = 60; // initial maximum gap between platforms
@@ -44,6 +44,7 @@ namespace DoodleJump.Scenes
         private const int DIS_ANIM_DIM = 4;
         private const int ANIMATION_DELAY = 5;
         private const int SPEED = 1;
+        private const int MONSTER_GAP = 2000; // height difference to generate a new monster
 
         private double maxPlatfromGap = 0;
 
@@ -53,11 +54,15 @@ namespace DoodleJump.Scenes
         private Doodle doodle;
         private Booster booster;
         private TopBar topbar;
+        private Monster monster;
         private static Random randomNumGen = new Random();
 
         private DoodleBoosterColMng doodleBoosterColMng;
-        private List<Platform> platforms;
+        private DoodleMonsterColMng doodleMonsterColMng;
         private List<DoodlePlatformColMng> doodlePlatformColMngs;
+        private List<MonsterBooletColMng> monsterBooletColMng;
+
+        private List<Platform> platforms;
         private List<Bullet> bullets;
 
         private SoundEffect gameOverSound;
@@ -91,6 +96,7 @@ namespace DoodleJump.Scenes
             this.game = game;
             platforms = new List<Platform>();
             doodlePlatformColMngs = new List<DoodlePlatformColMng>();
+            monsterBooletColMng = new List<MonsterBooletColMng>();
             bullets = new List<Bullet>();
 
             gameOverSound = game.Content.Load<SoundEffect>("Sounds/game_over");
@@ -104,8 +110,6 @@ namespace DoodleJump.Scenes
             woodenPlatformTexture = game.Content.Load<Texture2D>("Images/wooden_platform");
             movingVerPlatformTexture = game.Content.Load<Texture2D>("Images/movingVer_platform");
             disappearingPlatformTexture = game.Content.Load<Texture2D>("Images/disappearing_platform");
-
-            monsterTexture = game.Content.Load<Texture2D>("Images/monster");
 
             rocketTexture = game.Content.Load<Texture2D>("Images/rocket");
             doodleRocketTexture = game.Content.Load<Texture2D>("Images/doodle_rocket");
@@ -132,6 +136,16 @@ namespace DoodleJump.Scenes
                 doodlePlatformColMngs.Add(doodlePlatformColMng);
             }
 
+            monsterTexture = game.Content.Load<Texture2D>("Images/monster");
+            monster = new Monster(game, spriteBatch, monsterTexture, new Vector2(Shared.Stage.X / 2, Shared.Stage.Y / 2));
+            this.Components.Add(monster);
+
+            SoundEffect monsterHitSound = game.Content.Load<SoundEffect>("Sounds/monster_crash"); // if doodle hits the monster
+            SoundEffect monsterDefeatSound = game.Content.Load<SoundEffect>("Sounds/monster_defeat"); // if doodle jumps on the monster
+            Song monsterCloseSound = game.Content.Load<Song>("Sounds/monster_close"); // if monster is nearby
+            doodleMonsterColMng = new DoodleMonsterColMng(game, doodle, monsterHitSound, monsterDefeatSound, monsterCloseSound, monster);
+            this.Components.Add(doodleMonsterColMng);
+
             Texture2D bulletTexture = game.Content.Load<Texture2D>("Images/bullet");
             // generate bullets
             for (int i = 0; i < SPRITE_COUNT; i++)
@@ -139,6 +153,9 @@ namespace DoodleJump.Scenes
                 Bullet bullet = new Bullet(game, spriteBatch, bulletTexture);
                 bullets.Add(bullet);
                 this.Components.Add(bullet);
+
+                MonsterBooletColMng monsterBooletColMng = new MonsterBooletColMng(game, monster, monsterDefeatSound, bullet);
+                this.Components.Add(monsterBooletColMng);
             }
 
             // spring booster
@@ -217,11 +234,17 @@ namespace DoodleJump.Scenes
                 }
                 oldState = ks;
 
-                MovePlatforms();
+                MoveSprites();
+
+                if (monster.Status == MonsterStatus.Won)
+                {
+                    DisableAllColMngs();
+                }
 
                 if (doodle.GetLowerBound() >= Shared.Stage.Y)
                 {
                     isGameOver = true;
+                    DisableAllColMngs();
                 }
             }
             else
@@ -247,13 +270,15 @@ namespace DoodleJump.Scenes
             base.Update(gameTime);
         }
 
-        private void MovePlatforms()
+        private void MoveSprites()
         {
             if (doodle.Position.Y <= Shared.Stage.Y / 2)
             {
                 doodle.Position = new Vector2(doodle.Position.X, doodle.Position.Y + MOVEMENT);
                 woodPlatAnim.Position = new Vector2(woodPlatAnim.Position.X, woodPlatAnim.Position.Y + MOVEMENT);
                 disapPlatAnim.Position = new Vector2(disapPlatAnim.Position.X, disapPlatAnim.Position.Y + MOVEMENT);
+                springAnim.Position = new Vector2(springAnim.Position.X, springAnim.Position.Y + MOVEMENT);
+                monster.Position = new Vector2(monster.Position.X, monster.Position.Y + MOVEMENT);
                 oldPosition += MOVEMENT;
 
                 for (int i = 0; i < platforms.Count; i++)
@@ -276,13 +301,22 @@ namespace DoodleJump.Scenes
                     topIdx = i;
                 }
             }
+            // if monster is out of the screen
+            if (monster.Position.Y + monster.Texture.Height >= Shared.Stage.Y || monster.Status == MonsterStatus.Shooted)
+            {
+                monster.Position = new Vector2(monster.Position.X, monster.Position.Y - MONSTER_GAP);
+                monster.Status = MonsterStatus.None;
+                doodleMonsterColMng.PauseSong();
+            }
         }
 
-        private void FallDoodle()
+        public void FallDoodle()
         {
             doodle.Position = new Vector2(doodle.Position.X, doodle.Position.Y - FALL);
             woodPlatAnim.Position = new Vector2(woodPlatAnim.Position.X, woodPlatAnim.Position.Y - FALL);
             disapPlatAnim.Position = new Vector2(disapPlatAnim.Position.X, disapPlatAnim.Position.Y - FALL);
+            springAnim.Position = new Vector2(springAnim.Position.X, springAnim.Position.Y - FALL);
+            monster.Position = new Vector2(monster.Position.X, monster.Position.Y - FALL);
             for (int i = 0; i < platforms.Count; i++)
             {
                 platforms[i].Position = new Vector2(platforms[i].Position.X, platforms[i].Position.Y - FALL);
@@ -305,7 +339,7 @@ namespace DoodleJump.Scenes
             currPlatform.Speed = Vector2.Zero;
 
             // check boosters
-            if(booster.MasterPlatform == currPlatform)
+            if (booster.MasterPlatform == currPlatform)
             {
                 booster.IsUsed = false;
                 booster.MasterPlatform = null;
@@ -390,6 +424,22 @@ namespace DoodleJump.Scenes
             typeIdx = randomNumGen.Next(0, possiblePlatfromTypes.Count);
 
             return possiblePlatfromTypes[typeIdx];
+        }
+
+        private void DisableAllColMngs()
+        {
+            //private DoodleBoosterColMng doodleBoosterColMng;
+            //private DoodleMonsterColMng doodleMonsterColMng;
+            //private List<DoodlePlatformColMng> doodlePlatformColMngs;
+
+            doodleBoosterColMng.Activated = false;
+            //doodleMonsterColMng.Enabled = false;
+            //doodleMonsterColMng.PauseSong();
+            doodleMonsterColMng.Activated = false;
+            foreach (DoodlePlatformColMng colMng in doodlePlatformColMngs)
+            {
+                colMng.Activated = false;
+            }
         }
     }
 }

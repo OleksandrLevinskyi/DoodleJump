@@ -20,6 +20,9 @@ namespace DoodleJump.Sprites
         private int rows = 0;
         private int cols = 0;
 
+        public int Rows { get => rows; }
+        public int Cols { get => cols; }
+
         public Animation(Game game, SpriteBatch spriteBatch,
             Texture2D texture, int rows, int cols, int delay) : base(game, spriteBatch, texture)
         {
@@ -27,7 +30,7 @@ namespace DoodleJump.Sprites
             this.cols = cols;
             this.delay = delay;
 
-            this.position = Vector2.Zero;
+            this.position = Vector2.Zero; // default
 
             dimension = new Vector2(texture.Width / cols, texture.Height / rows);
 
@@ -42,6 +45,7 @@ namespace DoodleJump.Sprites
             if (frameIdx >= 0)
             {
                 spriteBatch.Draw(texture, position, frames[frameIdx], Color.White);
+                Console.WriteLine(position);
             }
             spriteBatch.End();
         }

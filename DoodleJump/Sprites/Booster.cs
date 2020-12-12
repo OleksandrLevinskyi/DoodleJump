@@ -42,9 +42,5 @@ namespace DoodleJump.Sprites
 
             base.Update(gameTime);
         }
-
-        //public void UpdatePosition(Platform masterPlatform)
-        //{
-        //}
     }
 }

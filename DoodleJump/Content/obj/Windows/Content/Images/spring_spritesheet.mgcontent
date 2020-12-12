@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/spring_spritesheet.png</SourceFile>
-  <SourceTime>2020-12-11T20:03:17.2946858-05:00</SourceTime>
+  <SourceTime>2020-12-12T01:55:33.2700784-05:00</SourceTime>
   <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Content/Images/spring_spritesheet.xnb</DestFile>
-  <DestTime>2020-12-11T20:54:33.9546766-05:00</DestTime>
+  <DestTime>2020-12-12T02:15:02.172308-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

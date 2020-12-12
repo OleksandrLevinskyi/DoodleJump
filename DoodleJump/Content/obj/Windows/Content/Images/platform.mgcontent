@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Images/platform.png</SourceFile>
-  <SourceTime>2020-12-09T02:07:07.0587451-05:00</SourceTime>
+  <SourceTime>2020-12-12T02:03:37.0181044-05:00</SourceTime>
   <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Content/Images/platform.xnb</DestFile>
-  <DestTime>2020-12-11T03:15:39.2562996-05:00</DestTime>
+  <DestTime>2020-12-12T02:15:02.1493061-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

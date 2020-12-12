@@ -15,6 +15,7 @@ namespace DoodleJump.CollisionManagers
     {
         protected Doodle doodle;
         protected SoundEffect hitSound;
+        public bool Activated { get; set; } = true;
         public DoodleColMng(Game game, Doodle doodle, SoundEffect hitSound) : base(game)
         {
             this.doodle = doodle;

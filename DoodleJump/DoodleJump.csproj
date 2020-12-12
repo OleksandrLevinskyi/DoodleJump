@@ -46,6 +46,7 @@
     <Compile Include="CollisionManagers\DoodleMonsterColMng.cs" />
     <Compile Include="CollisionManagers\DoodlePlatformColMng.cs" />
     <Compile Include="CollisionManagers\DoodleAnimatedPlatfromColMng.cs" />
+    <Compile Include="CollisionManagers\MonsterBooletColMng.cs" />
     <Compile Include="Scenes\GameOverScene.cs" />
     <Compile Include="Components\ActionScene\TopBar.cs" />
     <Compile Include="Components\BasicString.cs" />
@@ -63,8 +64,8 @@
     <Compile Include="Shared.cs" />
     <Compile Include="Sprites\Booster.cs" />
     <Compile Include="Sprites\Bullet.cs" />
-    <Compile Include="Sprites\Coin.cs" />
     <Compile Include="Sprites\Doodle.cs" />
+    <Compile Include="Sprites\Monster.cs" />
     <Compile Include="Sprites\Platform.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Sprites\Animation.cs" />

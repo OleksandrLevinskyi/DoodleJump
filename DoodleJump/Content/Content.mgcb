@@ -261,12 +261,6 @@
 /processorParam:Quality=Best
 /build:Sounds/bullet.wav
 
-#begin Sounds/coin_collect.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/coin_collect.wav
-
 #begin Sounds/coin_pickup.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -297,17 +291,23 @@
 /processorParam:Quality=Best
 /build:Sounds/jump.wav
 
-#begin Sounds/monster_close.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
+#begin Sounds/monster_close.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
 /processorParam:Quality=Best
-/build:Sounds/monster_close.wav
+/build:Sounds/monster_close.mp3
 
 #begin Sounds/monster_crash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/monster_crash.wav
+
+#begin Sounds/monster_defeat.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/monster_defeat.wav
 
 #begin Sounds/spring.wav
 /importer:WavImporter

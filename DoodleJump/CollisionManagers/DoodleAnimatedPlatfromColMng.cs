@@ -14,6 +14,7 @@ namespace DoodleJump.CollisionManagers
     public class DoodleAnimatedPlatfromColMng : DoodlePlatformColMng
     {
         private Animation animation;
+
         public DoodleAnimatedPlatfromColMng(Game game, Doodle doodle,
             Platform platform, SoundEffect hitSound, Animation animation) : base(game, doodle, platform, hitSound)
         {
@@ -22,21 +23,22 @@ namespace DoodleJump.CollisionManagers
 
         public override void Update(GameTime gameTime)
         {
-            Rectangle doodleFeetBoundary = doodle.GetFeetBound();
-            Rectangle platformBoundary = platform.GetBound();
-
-            if (doodleFeetBoundary.Intersects(platformBoundary) && doodle.IsFalling)
+            if (Activated)
             {
-                hitSound.Play();
-                animation.Position = platform.Position;
-                animation.Start();
-                if (platform.Type == PlatfromType.Disappearing)
+                Rectangle doodleFeetBoundary = doodle.GetFeetBound();
+                Rectangle platformBoundary = platform.GetBound();
+
+                if (doodleFeetBoundary.Intersects(platformBoundary) && doodle.IsFalling)
                 {
-                    base.Update(gameTime);
-                }
-                platform.Position = new Vector2(0, Shared.Stage.Y); // put a platfrom outside the screen to be re-generated
-                //platform.Dispose();
-                //this.Dispose();
+                    hitSound.Play();
+                    animation.Position = platform.Position;
+                    animation.Start();
+                    if (platform.Type == PlatfromType.Disappearing)
+                    {
+                        base.Update(gameTime);
+                    }
+                    platform.Position = new Vector2(0, Shared.Stage.Y); // put a platfrom outside the screen to be re-generated
+                } 
             }
         }
     }

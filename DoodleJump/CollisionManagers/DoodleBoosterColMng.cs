@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.CollisionManagers
 {
-    public class DoodleBoosterColMng:DoodleColMng
+    public class DoodleBoosterColMng : DoodleColMng
     {
         private const int BOOSTER_COUNT = 240;
         private const int ROCKET_SPEED = 400;
@@ -22,48 +22,32 @@ namespace DoodleJump.CollisionManagers
 
         public DoodleBoosterColMng(Game game, Doodle doodle, SoundEffect hitSound, Booster booster) : base(game, doodle, hitSound)
         {
-            this.doodle = doodle;
             this.booster = booster;
-            this.hitSound = hitSound;
         }
 
 
         public override void Update(GameTime gameTime)
         {
-            if(booster.Type == BoosterType.Spring)
+            if (Activated)
             {
-                Rectangle doodleFeetBoundary = doodle.GetFeetBound();
-                Rectangle boosterBoundary = booster.GetBound();
-
-                if (doodleFeetBoundary.Intersects(boosterBoundary))
+                if (booster.Type == BoosterType.Spring)
                 {
-                    doodle.SpringBoost();
-                    BoosterAnimation.Position = booster.Position;
-                    //Animation.Position = new Vector2(booster.Position.X,);
-                    BoosterAnimation.Start();
-                    hitSound.Play();
+                    Rectangle doodleFeetBoundary = doodle.GetFeetBound();
+                    Rectangle boosterBoundary = booster.GetBound();
+
+                    if (doodleFeetBoundary.Intersects(boosterBoundary) && doodle.IsFalling)
+                    {
+                        doodle.IsJumping = true;
+                        doodle.SpringBoost();
+                        BoosterAnimation.Position = new Vector2(booster.MasterPlatform.Position.X + (booster.MasterPlatform.Texture.Width - BoosterAnimation.Texture.Width / BoosterAnimation.Cols) / 2,
+                                                                    booster.MasterPlatform.Position.Y - BoosterAnimation.Texture.Height / BoosterAnimation.Rows);
+                        BoosterAnimation.Start();
+                        hitSound.Play();
+                    }
                 }
+
+                base.Update(gameTime);
             }
-            //else if(booster.Type == BoosterType.Rocket)
-            //{
-            //    Rectangle doodleBoundary = doodle.GetBound();
-            //    Rectangle boosterBoundary = booster.GetBound();
-
-            //    if (doodleBoundary.Intersects(boosterBoundary))
-            //    {
-            //        hitSound.Play();
-            //        doodle.Gravity = 0;
-            //        doodle.JumpSpeed = ROCKET_SPEED;
-            //        counter = 0;
-            //    }
-            //    else if(counter < BOOSTER_COUNT)
-            //    {
-            //        counter++;
-            //    }
-            //    counter++;
-            //}
-
-            base.Update(gameTime);
         }
     }
 }
