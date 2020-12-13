@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace DoodleJump
 {
@@ -12,6 +16,7 @@ namespace DoodleJump
     {
         private const int SCREEN_WIDTH = 500;
         private const int SCREEN_HEIGHT = 800;
+        private const int MAX_CAPACITY = 10;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -21,10 +26,15 @@ namespace DoodleJump
         private ActionScene actionScene;
         private HelpScene helpScene;
         private HighScoreScene highScoreScene;
-        private StoreScene storeScene;
+        private AboutScene storeScene;
         private GameOverScene gameOverScene;
 
         private KeyboardState oldState;
+
+        private List<Player> highScorePlayers;
+        private StreamReader reader;
+        private StreamWriter writer;
+        private string fileName = "scores.txt";
 
         private enum MainMenu
         {
@@ -57,6 +67,7 @@ namespace DoodleJump
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            highScorePlayers = new List<Player>();
 
             base.Initialize();
         }
@@ -86,7 +97,7 @@ namespace DoodleJump
             highScoreScene = new HighScoreScene(this, spriteBatch);
             this.Components.Add(highScoreScene);
 
-            storeScene = new StoreScene(this, spriteBatch);
+            storeScene = new AboutScene(this, spriteBatch);
             this.Components.Add(storeScene);
 
             gameOverScene = new GameOverScene(this, spriteBatch);
@@ -123,7 +134,6 @@ namespace DoodleJump
                 if (oldState.IsKeyDown(Keys.Enter) && ks.IsKeyUp(Keys.Enter))
                 {
                     selectedIdx = startScene.Menu.SelectedIdx;
-                    System.Console.WriteLine(selectedIdx);
                     startScene.Hide();
                     if (selectedIdx == (int)MainMenu.Start)
                     {
@@ -144,13 +154,28 @@ namespace DoodleJump
                     else if (selectedIdx == (int)MainMenu.Quit)
                     {
                         Exit();
-                    } 
+                    }
                 }
             }
             if (actionScene.Enabled)
             {
                 if (actionScene.ShowGameOver)
                 {
+                    actionScene.Enabled = false;
+                    gameOverScene.Score = (int)actionScene.Score;
+                    ReadScores(); // read scores
+
+                    // if there are players saved and the current score is lower compared to the highest one,
+                    // set highscore to this max one;
+                    // otherwise set to the current score
+                    if (highScorePlayers.Any() && gameOverScene.Score < highScorePlayers[0].Score)
+                    {
+                        gameOverScene.HighScore = highScorePlayers[0].Score;
+                    }
+                    else
+                    {
+                        gameOverScene.HighScore = (int)actionScene.Score;
+                    }
                     gameOverScene.Show();
                 }
             }
@@ -162,13 +187,18 @@ namespace DoodleJump
                     startScene.Show();
                 }
             }
-            if (gameOverScene.Enabled)
+            if (gameOverScene.Enabled && !gameOverScene.IsEditNameMode)
             {
                 if (oldState.IsKeyDown(Keys.Enter) && ks.IsKeyUp(Keys.Enter))
                 {
                     selectedIdx = gameOverScene.Menu.SelectedIdx;
-                    System.Console.WriteLine(selectedIdx);
+
                     gameOverScene.Hide();
+
+                    Player player = new Player(gameOverScene.Name, gameOverScene.Score);
+                    UpdateScores(player); // update the 'scores' file
+                    highScorePlayers = new List<Player>();
+
                     if (selectedIdx == (int)GameOverMenu.PlayAgain)
                     {
                         actionScene.Hide();
@@ -177,8 +207,10 @@ namespace DoodleJump
                     }
                     else if (selectedIdx == (int)GameOverMenu.MainMenu)
                     {
+                        gameOverScene.Menu.SelectedIdx = 0;
                         actionScene.Hide();
-                        RebootGameOverScene();
+                        //RebootGameOverScene();
+                        RebootActionScene();
                         startScene.Show();
                     }
                 }
@@ -201,18 +233,84 @@ namespace DoodleJump
             base.Draw(gameTime);
         }
 
-
         private void RebootActionScene()
         {
             this.Components.Remove(actionScene);
             actionScene = new ActionScene(this, spriteBatch);
             this.Components.Add(actionScene);
+
+            this.Components.Remove(gameOverScene);
+            this.Components.Add(gameOverScene);
         }
+
         private void RebootGameOverScene()
         {
             this.Components.Remove(gameOverScene);
             gameOverScene = new GameOverScene(this, spriteBatch);
             this.Components.Add(gameOverScene);
+        }
+
+        private void ReadScores()
+        {
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    using (reader = new StreamReader(fileName))
+                    {
+                        while (!reader.EndOfStream)
+                        {
+                            string record = reader.ReadLine();
+                            string[] recordData = record.Split(new char[] { '\t' });
+                            Player player = new Player(recordData[0], Convert.ToInt32(recordData[1]));
+                            highScorePlayers.Add(player);
+                        }
+                    }
+                }
+
+                highScorePlayers = highScorePlayers.OrderByDescending(r => r.Score).ToList(); // sort by score
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetBaseException().Message);
+            }
+        }
+
+        private void UpdateScores(Player player)
+        {
+            bool isChanged = false;
+            try
+            {
+                // update the list
+                if (highScorePlayers.Count < MAX_CAPACITY)
+                {
+                    highScorePlayers.Add(player);
+                    isChanged = true;
+                }
+                else if (highScorePlayers[highScorePlayers.Count - 1].Score < gameOverScene.Score)
+                {
+                    highScorePlayers[highScorePlayers.Count - 1] = player;
+                    isChanged = true;
+                }
+
+                // update the file
+                if (isChanged)
+                {
+                    highScorePlayers = highScorePlayers.OrderByDescending(r => r.Score).ToList(); // sort by score
+
+                    using (writer = new StreamWriter(fileName, append: false))
+                    {
+                        foreach (Player p in highScorePlayers)
+                        {
+                            writer.WriteLine(p.ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetBaseException().Message);
+            }
         }
     }
 }

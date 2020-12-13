@@ -17,14 +17,11 @@ namespace DoodleJump.Components.ActionScene
         private Texture2D topbarTexture;
         private SpriteFont font;
         private BasicString scoreString;
-        private BasicString coinCountString;
 
-        private float score = 0;
-        private int coinCount = 0;
+        private int score = 0;
         private float yCoord = 0;
 
-        public float Score { get => score; set => score = value; }
-        public int CoinCount { get => coinCount; set => coinCount = value; }
+        public int Score { get => score; set => score = value; }
 
         public TopBar(Game game, SpriteBatch spriteBatch,
             Texture2D topbarTexture, SpriteFont font) : base(game)
@@ -36,8 +33,6 @@ namespace DoodleJump.Components.ActionScene
             yCoord = (topbarTexture.Height - font.LineSpacing) / 2;
             scoreString = new BasicString(game, spriteBatch, font, score.ToString(), Color.Black);
             scoreString.Position = new Vector2(TEXT_PADDING, yCoord);
-            coinCountString = new BasicString(game, spriteBatch, font, coinCount.ToString(), Color.Black);
-            coinCountString.Position = new Vector2(Shared.Stage.X - TEXT_PADDING, yCoord);
         }
 
         public override void Draw(GameTime gameTime)
@@ -47,17 +42,16 @@ namespace DoodleJump.Components.ActionScene
             spriteBatch.End();
 
             scoreString.Draw(gameTime);
-            coinCountString.Draw(gameTime);
 
             base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)
         {
-            scoreString.Message = Math.Round(score).ToString();
-            coinCountString.Message = coinCount.ToString();
+            scoreString.Message = score.ToString();
+            //coinCountString.Message = coinCount.ToString();
 
-            coinCountString.Position = new Vector2(Shared.Stage.X - font.MeasureString(coinCount.ToString()).X - TEXT_PADDING, yCoord);
+            //coinCountString.Position = new Vector2(Shared.Stage.X - font.MeasureString(coinCount.ToString()).X - TEXT_PADDING, yCoord);
 
             base.Update(gameTime);
         }

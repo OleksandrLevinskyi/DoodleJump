@@ -45,6 +45,7 @@ namespace DoodleJump.Scenes
         private const int ANIMATION_DELAY = 5;
         private const int SPEED = 1;
         private const int MONSTER_GAP = 2000; // height difference to generate a new monster
+        private const float PARALLAX_DIFF = 1.5f;
 
         private double maxPlatfromGap = 0;
 
@@ -84,15 +85,27 @@ namespace DoodleJump.Scenes
         private Texture2D disappearingPlatformTexture;
 
         private Texture2D springTexture;
-        private Texture2D rocketTexture;
-        private Texture2D doodleRocketTexture;
 
         private Texture2D monsterTexture;
 
-        public bool ShowGameOver { get; set; }
+        public bool ShowGameOver { get; set; } = false;
+        public float Score { get => score; }
 
         public ActionScene(Game game, SpriteBatch spriteBatch) : base(game, spriteBatch)
         {
+            this.texture = game.Content.Load<Texture2D>("Images/background");
+
+            Texture2D cloudsBottomTexture = game.Content.Load<Texture2D>("Images/clouds_bottom");
+            Vector2 speedBottom = new Vector2(SPEED, 0);
+            ParallaxBackground layerBottom = new ParallaxBackground(game, spriteBatch, cloudsBottomTexture, speedBottom);
+            this.Components.Add(layerBottom);
+
+            Texture2D cloudsTopTexture = game.Content.Load<Texture2D>("Images/clouds_top");
+            Vector2 speedTop = new Vector2(SPEED * PARALLAX_DIFF, 0);
+            ParallaxBackground layerTop = new ParallaxBackground(game, spriteBatch, cloudsTopTexture, speedTop);
+            this.Components.Add(layerTop);
+
+
             this.game = game;
             platforms = new List<Platform>();
             doodlePlatformColMngs = new List<DoodlePlatformColMng>();
@@ -110,9 +123,6 @@ namespace DoodleJump.Scenes
             woodenPlatformTexture = game.Content.Load<Texture2D>("Images/wooden_platform");
             movingVerPlatformTexture = game.Content.Load<Texture2D>("Images/movingVer_platform");
             disappearingPlatformTexture = game.Content.Load<Texture2D>("Images/disappearing_platform");
-
-            rocketTexture = game.Content.Load<Texture2D>("Images/rocket");
-            doodleRocketTexture = game.Content.Load<Texture2D>("Images/doodle_rocket");
 
             // create a doodle
             Texture2D doodleTextureRight = game.Content.Load<Texture2D>("Images/doodle_right");
@@ -216,7 +226,7 @@ namespace DoodleJump.Scenes
                     score += diff;
                     oldPosition = doodle.Position.Y;
 
-                    topbar.Score = score;
+                    topbar.Score = (int)score;
                 }
 
                 KeyboardState ks = Keyboard.GetState();
@@ -432,13 +442,13 @@ namespace DoodleJump.Scenes
             //private DoodleMonsterColMng doodleMonsterColMng;
             //private List<DoodlePlatformColMng> doodlePlatformColMngs;
 
-            doodleBoosterColMng.Activated = false;
-            //doodleMonsterColMng.Enabled = false;
-            //doodleMonsterColMng.PauseSong();
-            doodleMonsterColMng.Activated = false;
+            doodleBoosterColMng.Enabled = false;
+            doodleMonsterColMng.PauseSong();
+            doodleMonsterColMng.Enabled = false;
+
             foreach (DoodlePlatformColMng colMng in doodlePlatformColMngs)
             {
-                colMng.Activated = false;
+                colMng.Enabled = false;
             }
         }
     }

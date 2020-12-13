@@ -13,13 +13,13 @@ namespace DoodleJump.Scenes
     public class GameOverScene : GameScene
     {
         private const int TITLE_POSITION = 200;
-        private const int PADDING = 30;
+        private const int LINE_HEIGHT = 50;
+        private const int COEFFICIENT = 4;
 
         private string[] menuItems = { "Play Again", "Main Menu" };
 
         private MenuComponent menu;
         private InputManager input;
-        private bool isEditNameMode = false;
         private bool isArranged = false;
         private KeyboardState oldState;
 
@@ -27,44 +27,44 @@ namespace DoodleJump.Scenes
 
         private BasicString scoreString;
         private BasicString highScoreString;
-        private BasicString overallHighScoreString;
         private BasicString nameString;
+        private Texture2D editModeTexture;
+        private Texture2D mainModeTexture;
+        public bool IsEditNameMode { get; set; } = false;
 
-        public string Score { get; set; }
-        public string HighScore { get; set; }
-        public string OverallHighScore { get; set; }
-        public string Name { get; set; }
+        public int Score { get; set; }
+        public int HighScore { get; set; }
+        public string Name { get; set; } = DEFAULT_NAME;
         public MenuComponent Menu { get => menu; set => menu = value; }
 
         public GameOverScene(Game game, SpriteBatch spriteBatch) : base(game, spriteBatch)
         {
+            mainModeTexture = game.Content.Load<Texture2D>("Images/gameover_scene");
+            editModeTexture = game.Content.Load<Texture2D>("Images/gameover_scene_editmode");
+            this.texture = mainModeTexture;
+
             SpriteFont standardItemFont = game.Content.Load<SpriteFont>("Fonts/standardItemFont");
             SpriteFont chosenItemFont = game.Content.Load<SpriteFont>("Fonts/chosenItemFont");
 
-            BasicString titleString = new BasicString(game, spriteBatch, standardItemFont, "GAME OVER!", Color.Red);
-            titleString.Position = GetMiddlePosition(standardItemFont, titleString.Message);
-            this.Components.Add(titleString);
-
-            scoreString = new BasicString(game, spriteBatch, standardItemFont, $"your score: {Score}", Color.Black);
-            scoreString.Position = GetMiddlePosition(standardItemFont, scoreString.Message);
+            scoreString = new BasicString(game, spriteBatch, standardItemFont, "", Color.Black);
+            scoreString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, TITLE_POSITION);
             this.Components.Add(scoreString);
 
-            highScoreString = new BasicString(game, spriteBatch, standardItemFont, $"your high score: {HighScore}", Color.Black);
-            highScoreString.Position = GetMiddlePosition(standardItemFont, highScoreString.Message);
+            highScoreString = new BasicString(game, spriteBatch, standardItemFont, "", Color.Black);
+            highScoreString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, TITLE_POSITION);
             this.Components.Add(highScoreString);
 
-            overallHighScoreString = new BasicString(game, spriteBatch, standardItemFont, $"overall high score: {OverallHighScore}", Color.Black);
-            overallHighScoreString.Position = GetMiddlePosition(standardItemFont, overallHighScoreString.Message);
-            this.Components.Add(overallHighScoreString);
-
-            nameString = new BasicString(game, spriteBatch, standardItemFont, $"your name: {Name}", Color.Black);
-            nameString.Position = GetMiddlePosition(standardItemFont, nameString.Message);
+            nameString = new BasicString(game, spriteBatch, standardItemFont, "your name: ", Color.Black);
+            nameString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, TITLE_POSITION);
             this.Components.Add(nameString);
 
             menu = new MenuComponent(game, spriteBatch, standardItemFont, chosenItemFont, menuItems);
+            menu.Position = GetMiddlePosition(chosenItemFont, menuItems[0], menu.Position.Y);
             this.Components.Add(menu);
 
-            input = new InputManager(game, spriteBatch, standardItemFont, Vector2.Zero, Color.Black);
+            input = new InputManager(game, spriteBatch, standardItemFont, Color.Black);
+            input.Message = Name;
+            input.Position = new Vector2(nameString.Position.X + standardItemFont.MeasureString(nameString.Message).X, nameString.Position.Y);
             this.Components.Add(input);
         }
 
@@ -76,40 +76,51 @@ namespace DoodleJump.Scenes
         public override void Update(GameTime gameTime)
         {
             KeyboardState ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.LeftControl) && ks.IsKeyDown(Keys.S) && isEditNameMode)
+            if (ks.IsKeyDown(Keys.LeftControl) && ks.IsKeyDown(Keys.S) && IsEditNameMode)
             {
                 if (input.Message.Length == 0)
                 {
-                    input.Message = DEFAULT_NAME;
+                    input.Message = Name;
                 }
+                else
+                {
+                    Name = input.Message;
+                }
+                this.texture = mainModeTexture;
+
+                menu.Show();
+
                 input.DisableUpdate = true;
-                isEditNameMode = false;
+                IsEditNameMode = false;
             }
-            if (ks.IsKeyDown(Keys.LeftControl) && ks.IsKeyDown(Keys.Space) && !isEditNameMode)
+            if (ks.IsKeyDown(Keys.LeftControl) && ks.IsKeyDown(Keys.Space) && !IsEditNameMode)
             {
+                this.texture = editModeTexture;
+                menu.Hide();
+
+                input.Message = "";
                 input.DisableUpdate = false;
-                isEditNameMode = true;
+                IsEditNameMode = true;
             }
 
             oldState = ks;
 
+            scoreString.Message = $"your score: {Score}";
+            highScoreString.Message = $"highest score: {HighScore}";
+
             if (!isArranged)
             {
-                scoreString.Message = $"your score: {Score}";
-                highScoreString.Message = $"your high score: {HighScore}";
-                overallHighScoreString.Message = $"overall high score: {OverallHighScore}";
-                nameString.Message = $"your name: {Name}";
-
                 ArrangeStrings();
+                input.Position = new Vector2(input.Position.X, nameString.Position.Y);
                 isArranged = true;
             }
 
             base.Update(gameTime);
         }
 
-        private Vector2 GetMiddlePosition(SpriteFont font, string input)
+        private Vector2 GetMiddlePosition(SpriteFont font, string input, float yCoord = TITLE_POSITION)
         {
-            return new Vector2((Shared.Stage.X - font.MeasureString(input).X) / 2, TITLE_POSITION);
+            return new Vector2((Shared.Stage.X - font.MeasureString(input).X) / 2, yCoord);
         }
 
         private void ArrangeStrings()
@@ -119,7 +130,7 @@ namespace DoodleJump.Scenes
                 if (Components[i] is BasicString)
                 {
                     BasicString str = (BasicString)Components[i];
-                    str.Position = new Vector2(str.Position.X, str.Position.Y + (i * PADDING));
+                    str.Position = new Vector2(str.Position.X, str.Position.Y + (i * LINE_HEIGHT));
                 }
             }
         }

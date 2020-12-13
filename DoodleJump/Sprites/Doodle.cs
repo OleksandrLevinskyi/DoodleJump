@@ -14,7 +14,6 @@ namespace DoodleJump.Sprites
         private const int DOODLE_XSPEED = 5;
         private const int GRAVITY = 30;
         private const int NOSE_WIDTH = 25;
-        private const int FEET_WIDTH = 38;
         private const int FEET_HEIGHT = 12;
         private const int FEET_GAP = 7;
         private const int DELAY = 10;
@@ -48,6 +47,7 @@ namespace DoodleJump.Sprites
         public int JumpSpeed { get => jumpSpeed; set => jumpSpeed = value; }
         public bool IsJumping { get => isJumping; set => isJumping = value; }
         public bool IsFalling { get => isFalling; set => isFalling = value; }
+        public Color DoodleColor { get; set; } = Color.White;
 
         public Doodle(Game game, SpriteBatch spriteBatch,
             Texture2D textureRight, Texture2D textureLeft, Texture2D textureUp) : base(game, spriteBatch, textureRight)
@@ -60,6 +60,13 @@ namespace DoodleJump.Sprites
             this.textureUp = textureUp;
         }
 
+        public override void Draw(GameTime gameTime)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, position, DoodleColor);
+            spriteBatch.End();
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (isCount)
@@ -69,7 +76,7 @@ namespace DoodleJump.Sprites
 
             // manage keyboard arrow clicks
             KeyboardState ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Left))
+            if (ks.IsKeyDown(Keys.Left) && movementDirection != MovementDirection.Up)
             {
                 position.X -= speed.X;
                 if (position.X + texture.Width / 2 <= 0)
@@ -79,7 +86,7 @@ namespace DoodleJump.Sprites
                 this.texture = textureLeft;
                 movementDirection = MovementDirection.Left;
             }
-            if (ks.IsKeyDown(Keys.Right))
+            if (ks.IsKeyDown(Keys.Right) && movementDirection != MovementDirection.Up)
             {
                 position.X += speed.X;
                 if (position.X + texture.Width / 2 >= Shared.Stage.X)
@@ -93,6 +100,7 @@ namespace DoodleJump.Sprites
             if (oldState.IsKeyUp(Keys.Space) && ks.IsKeyDown(Keys.Space))
             {
                 this.texture = textureUp;
+                this.position.Y -= textureUp.Height - textureRight.Height;
                 movementDirection = MovementDirection.Up;
                 count = 0;
                 isCount = true;
@@ -100,6 +108,7 @@ namespace DoodleJump.Sprites
             else if (count >= DELAY)
             {
                 this.texture = textureRight;
+                this.position.Y += textureUp.Height - textureRight.Height;
                 movementDirection = MovementDirection.Right;
                 count = 0;
                 isCount = false;

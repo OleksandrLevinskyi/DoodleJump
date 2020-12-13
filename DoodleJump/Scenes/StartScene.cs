@@ -21,6 +21,8 @@ namespace DoodleJump.Scenes
             SpriteFont standardItemFont = game.Content.Load<SpriteFont>("Fonts/standardItemFont");
             SpriteFont chosenItemFont = game.Content.Load<SpriteFont>("Fonts/chosenItemFont");
 
+            this.texture = game.Content.Load<Texture2D>("Images/start_scene");
+
             menu = new MenuComponent(game, spriteBatch, standardItemFont, chosenItemFont, menuItems);
             this.Components.Add(menu);
         }

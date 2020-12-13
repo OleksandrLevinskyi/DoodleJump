@@ -11,6 +11,7 @@ namespace DoodleJump
 {
     public abstract class GameScene : DrawableGameComponent
     {
+        protected Texture2D texture;
         private List<GameComponent> components;
         protected SpriteBatch spriteBatch;
 
@@ -25,6 +26,10 @@ namespace DoodleJump
 
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
             DrawableGameComponent drawGameComp = null;
             foreach (GameComponent gameComp in components)
             {

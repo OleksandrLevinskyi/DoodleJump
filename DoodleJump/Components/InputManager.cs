@@ -22,15 +22,14 @@ namespace DoodleJump.Components
 
         public string Message { get => message; set => message = value; }
         public bool DisableUpdate { get => disableUpdate; set => disableUpdate = value; }
+        public Vector2 Position { get; set; }
 
         public InputManager(Game game,
             SpriteBatch spriteBatch,
             SpriteFont font,
-            Vector2 position,
             Color color) : base(game)
         {
             basicString = new BasicString(game, spriteBatch, font, message, color);
-            basicString.Position = position;
         }
 
         public override void Draw(GameTime gameTime)
@@ -51,8 +50,8 @@ namespace DoodleJump.Components
                 if (key != null && ks.IsKeyDown((Keys)key) && !oldState.IsKeyDown((Keys)key))
                 {
                     string keyValue = key.ToString().ToLower();
-                    if (message.Length <= MAX_NAME_LENGTH && keyValue.Length==1 &&
-                        (int)keyValue[0] >= ASCII_MIN && (int)keyValue[0] <= ASCII_MAX && 
+                    if (message.Length < MAX_NAME_LENGTH && keyValue.Length == 1 &&
+                        (int)keyValue[0] >= ASCII_MIN && (int)keyValue[0] <= ASCII_MAX &&
                             Char.IsLetter(keyValue[0]))
                     {
                         message += keyValue;
@@ -65,6 +64,7 @@ namespace DoodleJump.Components
                 oldState = ks;
             }
             basicString.Message = message;
+            basicString.Position = Position;
 
             base.Update(gameTime);
         }

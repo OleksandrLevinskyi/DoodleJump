@@ -58,8 +58,6 @@ C:\Users\User\Desktop\Level 3\PROG2370 Game Programming\Assingments\Final Projec
 C:\Users\User\Desktop\Level 3\PROG2370 Game Programming\Assingments\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.pdb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Fonts\chosenItemFont.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Fonts\standardItemFont.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\coin_pickup.wma
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\coin_pickup.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\game_over.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\jetpack.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\jump.xnb
@@ -67,7 +65,6 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\monster_crash.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\spring.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\wood_platform_break.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\helpScene.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\platform.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\DoodleJump.exe
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\DoodleJump.pdb
@@ -105,10 +102,19 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\wooden_platform.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\wooden_platfrom_spritesheet.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\disappearing_platform_spritesheet.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\doodle_rocket.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\monster.xnb
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\rocket.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\spring.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\spring_spritesheet.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\monster_close.wma
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\monster_defeat.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\about_scene.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\background.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\clouds_bottom.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\clouds_top.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\gameover_scene.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\help_scene.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\rocks.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\start_scene.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\gameover_scene_editmode.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\highscore_screen.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\highscore_scene.xnb

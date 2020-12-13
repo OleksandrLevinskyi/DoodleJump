@@ -13,6 +13,7 @@ namespace DoodleJump.Scenes
     {
         public HighScoreScene(Game game, SpriteBatch spriteBatch) : base(game, spriteBatch)
         {
+            this.texture = game.Content.Load<Texture2D>("Images/highscore_scene");
         }
     }
 }

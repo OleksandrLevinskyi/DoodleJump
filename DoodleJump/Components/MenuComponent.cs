@@ -33,6 +33,8 @@ namespace DoodleJump.Components
 
             this.menuItems = menuItems.ToList<string>();
             position = new Vector2(Shared.Stage.X / 2, Shared.Stage.Y / 2);
+
+            this.Show();
         }
 
         public override void Draw(GameTime gameTime)
@@ -82,6 +84,18 @@ namespace DoodleJump.Components
             oldState = ks;
 
             base.Update(gameTime);
+        }
+
+        public virtual void Hide()
+        {
+            this.Enabled = false;
+            this.Visible = false;
+        }
+
+        public virtual void Show()
+        {
+            this.Enabled = true;
+            this.Visible = true;
         }
     }
 }

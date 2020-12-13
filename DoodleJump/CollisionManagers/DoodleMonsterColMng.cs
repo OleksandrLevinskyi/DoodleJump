@@ -62,14 +62,16 @@ namespace DoodleJump.CollisionManagers
                     {
                         PauseSong();
 
-                        doodle.IsJumping = true;
-                        doodle.Speed = Vector2.Zero;
+                        doodle.Enabled = false;
+                        //doodle.IsJumping = true;
+                        doodle.DoodleColor = Color.Pink;
+                        doodle.Speed = new Vector2(doodle.Speed.X, 0);
                         monster.Status = MonsterStatus.Won;
                         hitSound.Play();
                     }
                 }
 
-                base.Update(gameTime); 
+                base.Update(gameTime);
             }
             else
             {
