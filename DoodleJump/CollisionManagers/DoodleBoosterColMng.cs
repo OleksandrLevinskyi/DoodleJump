@@ -28,26 +28,23 @@ namespace DoodleJump.CollisionManagers
 
         public override void Update(GameTime gameTime)
         {
-            if (Activated)
+            if (booster.Type == BoosterType.Spring)
             {
-                if (booster.Type == BoosterType.Spring)
+                Rectangle doodleFeetBoundary = doodle.GetFeetBound();
+                Rectangle boosterBoundary = booster.GetBound();
+
+                if (doodleFeetBoundary.Intersects(boosterBoundary) && doodle.IsFalling)
                 {
-                    Rectangle doodleFeetBoundary = doodle.GetFeetBound();
-                    Rectangle boosterBoundary = booster.GetBound();
-
-                    if (doodleFeetBoundary.Intersects(boosterBoundary) && doodle.IsFalling)
-                    {
-                        doodle.IsJumping = true;
-                        doodle.SpringBoost();
-                        BoosterAnimation.Position = new Vector2(booster.MasterPlatform.Position.X + (booster.MasterPlatform.Texture.Width - BoosterAnimation.Texture.Width / BoosterAnimation.Cols) / 2,
-                                                                    booster.MasterPlatform.Position.Y - BoosterAnimation.Texture.Height / BoosterAnimation.Rows);
-                        BoosterAnimation.Start();
-                        hitSound.Play();
-                    }
+                    doodle.IsJumping = true;
+                    doodle.SpringBoost();
+                    BoosterAnimation.Position = new Vector2(booster.MasterPlatform.Position.X + (booster.MasterPlatform.Texture.Width - BoosterAnimation.Texture.Width / BoosterAnimation.Cols) / 2,
+                                                                booster.MasterPlatform.Position.Y - BoosterAnimation.Texture.Height / BoosterAnimation.Rows);
+                    BoosterAnimation.Start();
+                    hitSound.Play();
                 }
-
-                base.Update(gameTime);
             }
+
+            base.Update(gameTime);
         }
     }
 }

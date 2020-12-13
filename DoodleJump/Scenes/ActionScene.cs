@@ -443,8 +443,8 @@ namespace DoodleJump.Scenes
             //private List<DoodlePlatformColMng> doodlePlatformColMngs;
 
             doodleBoosterColMng.Enabled = false;
-            doodleMonsterColMng.PauseSong();
             doodleMonsterColMng.Enabled = false;
+            doodleMonsterColMng.PauseSong();
 
             foreach (DoodlePlatformColMng colMng in doodlePlatformColMngs)
             {

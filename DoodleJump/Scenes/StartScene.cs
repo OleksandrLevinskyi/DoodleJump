@@ -12,7 +12,7 @@ namespace DoodleJump.Scenes
 {
     public class StartScene : GameScene
     {
-        private string[] menuItems = { "Start Game", "Help", "High Score", "Store", "Quit" };
+        private string[] menuItems = { "Start Game", "Help", "High Score", "About", "Quit" };
         private MenuComponent menu;
         public MenuComponent Menu { get => menu; set => menu = value; }
 

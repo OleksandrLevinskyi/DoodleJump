@@ -12,7 +12,7 @@ namespace DoodleJump.Scenes
 {
     public class GameOverScene : GameScene
     {
-        private const int TITLE_POSITION = 200;
+        private const int INIT_TOP_POSITION = 200;
         private const int LINE_HEIGHT = 50;
         private const int COEFFICIENT = 4;
 
@@ -47,15 +47,15 @@ namespace DoodleJump.Scenes
             SpriteFont chosenItemFont = game.Content.Load<SpriteFont>("Fonts/chosenItemFont");
 
             scoreString = new BasicString(game, spriteBatch, standardItemFont, "", Color.Black);
-            scoreString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, TITLE_POSITION);
+            scoreString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, INIT_TOP_POSITION);
             this.Components.Add(scoreString);
 
             highScoreString = new BasicString(game, spriteBatch, standardItemFont, "", Color.Black);
-            highScoreString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, TITLE_POSITION);
+            highScoreString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, INIT_TOP_POSITION);
             this.Components.Add(highScoreString);
 
             nameString = new BasicString(game, spriteBatch, standardItemFont, "your name: ", Color.Black);
-            nameString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, TITLE_POSITION);
+            nameString.Position = new Vector2(Shared.Stage.X / COEFFICIENT, INIT_TOP_POSITION);
             this.Components.Add(nameString);
 
             menu = new MenuComponent(game, spriteBatch, standardItemFont, chosenItemFont, menuItems);
@@ -118,7 +118,7 @@ namespace DoodleJump.Scenes
             base.Update(gameTime);
         }
 
-        private Vector2 GetMiddlePosition(SpriteFont font, string input, float yCoord = TITLE_POSITION)
+        private Vector2 GetMiddlePosition(SpriteFont font, string input, float yCoord = INIT_TOP_POSITION)
         {
             return new Vector2((Shared.Stage.X - font.MeasureString(input).X) / 2, yCoord);
         }

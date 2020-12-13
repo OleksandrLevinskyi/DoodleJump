@@ -29,54 +29,46 @@ namespace DoodleJump.CollisionManagers
 
         public override void Update(GameTime gameTime)
         {
-            if (Activated)
+            Rectangle doodleBoundary = doodle.GetBound();
+            Rectangle doodleFeetBoundary = doodle.GetFeetBound();
+            doodleBoundary = new Rectangle(doodleBoundary.X, doodleBoundary.Y, doodleBoundary.Width, doodleBoundary.Height - doodleFeetBoundary.Height);
+            Rectangle monsterBoundary = monster.GetBound();
+
+            if ((doodleBoundary.Top - SOS_AREA <= monsterBoundary.Bottom || doodleBoundary.Bottom + SOS_AREA <= monsterBoundary.Top) && monster.Status == MonsterStatus.None)
             {
-                Rectangle doodleBoundary = doodle.GetBound();
-                Rectangle doodleFeetBoundary = doodle.GetFeetBound();
-                doodleBoundary = new Rectangle(doodleBoundary.X, doodleBoundary.Y, doodleBoundary.Width, doodleBoundary.Height - doodleFeetBoundary.Height);
-                Rectangle monsterBoundary = monster.GetBound();
-
-                if ((doodleBoundary.Top - SOS_AREA <= monsterBoundary.Bottom || doodleBoundary.Bottom + SOS_AREA <= monsterBoundary.Top) && monster.Status == MonsterStatus.None)
+                if (!IsSongPlaying)
                 {
-                    if (!IsSongPlaying)
-                    {
-                        MediaPlayer.Play(closeSound);
-                        MediaPlayer.IsRepeating = true;
-                        IsSongPlaying = true;
-                    }
+                    MediaPlayer.Play(closeSound);
+                    MediaPlayer.IsRepeating = true;
+                    IsSongPlaying = true;
                 }
-
-                if (monster.Status == MonsterStatus.None)
-                {
-                    // monster defeated
-                    if (doodleFeetBoundary.Intersects(monsterBoundary) && doodle.IsFalling)
-                    {
-                        PauseSong();
-
-                        doodle.IsJumping = false;
-                        monster.Status = MonsterStatus.Defeated;
-                        defeatSound.Play();
-                    }
-                    // monster won
-                    else if (doodleBoundary.Intersects(monsterBoundary))
-                    {
-                        PauseSong();
-
-                        doodle.Enabled = false;
-                        //doodle.IsJumping = true;
-                        doodle.DoodleColor = Color.Pink;
-                        doodle.Speed = new Vector2(doodle.Speed.X, 0);
-                        monster.Status = MonsterStatus.Won;
-                        hitSound.Play();
-                    }
-                }
-
-                base.Update(gameTime);
             }
-            else
+
+            if (monster.Status == MonsterStatus.None)
             {
-                PauseSong();
+                // monster defeated
+                if (doodleFeetBoundary.Intersects(monsterBoundary) && doodle.IsFalling)
+                {
+                    PauseSong();
+
+                    doodle.IsJumping = false;
+                    monster.Status = MonsterStatus.Defeated;
+                    defeatSound.Play();
+                }
+                // monster won
+                else if (doodleBoundary.Intersects(monsterBoundary))
+                {
+                    PauseSong();
+
+                    doodle.IsJumping = true;
+                    doodle.DoodleColor = Color.Pink;
+                    doodle.Speed = new Vector2(doodle.Speed.X, 0);
+                    monster.Status = MonsterStatus.Won;
+                    hitSound.Play();
+                }
             }
+
+            base.Update(gameTime);
         }
 
         public void PauseSong()

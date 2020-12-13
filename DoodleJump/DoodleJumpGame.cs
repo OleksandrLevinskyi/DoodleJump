@@ -26,7 +26,7 @@ namespace DoodleJump
         private ActionScene actionScene;
         private HelpScene helpScene;
         private HighScoreScene highScoreScene;
-        private AboutScene storeScene;
+        private AboutScene aboutScene;
         private GameOverScene gameOverScene;
 
         private KeyboardState oldState;
@@ -41,7 +41,7 @@ namespace DoodleJump
             Start,
             Help,
             HighScore,
-            Store,
+            About,
             Quit
         }
         private enum GameOverMenu
@@ -97,8 +97,8 @@ namespace DoodleJump
             highScoreScene = new HighScoreScene(this, spriteBatch);
             this.Components.Add(highScoreScene);
 
-            storeScene = new AboutScene(this, spriteBatch);
-            this.Components.Add(storeScene);
+            aboutScene = new AboutScene(this, spriteBatch);
+            this.Components.Add(aboutScene);
 
             gameOverScene = new GameOverScene(this, spriteBatch);
             this.Components.Add(gameOverScene);
@@ -145,11 +145,12 @@ namespace DoodleJump
                     }
                     else if (selectedIdx == (int)MainMenu.HighScore)
                     {
+                        RebootHighScoreScene();
                         highScoreScene.Show();
                     }
-                    else if (selectedIdx == (int)MainMenu.Store)
+                    else if (selectedIdx == (int)MainMenu.About)
                     {
-                        storeScene.Show();
+                        aboutScene.Show();
                     }
                     else if (selectedIdx == (int)MainMenu.Quit)
                     {
@@ -163,7 +164,7 @@ namespace DoodleJump
                 {
                     actionScene.Enabled = false;
                     gameOverScene.Score = (int)actionScene.Score;
-                    ReadScores(); // read scores
+                    highScorePlayers = ReadScores(); // read scores
 
                     // if there are players saved and the current score is lower compared to the highest one,
                     // set highscore to this max one;
@@ -187,6 +188,22 @@ namespace DoodleJump
                     startScene.Show();
                 }
             }
+            if (highScoreScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    highScoreScene.Hide();
+                    startScene.Show();
+                }
+            }
+            if (aboutScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    aboutScene.Hide();
+                    startScene.Show();
+                }
+            }
             if (gameOverScene.Enabled && !gameOverScene.IsEditNameMode)
             {
                 if (oldState.IsKeyDown(Keys.Enter) && ks.IsKeyUp(Keys.Enter))
@@ -197,7 +214,6 @@ namespace DoodleJump
 
                     Player player = new Player(gameOverScene.Name, gameOverScene.Score);
                     UpdateScores(player); // update the 'scores' file
-                    highScorePlayers = new List<Player>();
 
                     if (selectedIdx == (int)GameOverMenu.PlayAgain)
                     {
@@ -243,19 +259,20 @@ namespace DoodleJump
             this.Components.Add(gameOverScene);
         }
 
-        private void RebootGameOverScene()
+        private void RebootHighScoreScene()
         {
-            this.Components.Remove(gameOverScene);
-            gameOverScene = new GameOverScene(this, spriteBatch);
-            this.Components.Add(gameOverScene);
+            this.Components.Remove(highScoreScene);
+            highScoreScene = new HighScoreScene(this, spriteBatch);
+            this.Components.Add(highScoreScene);
         }
 
-        private void ReadScores()
+        public List<Player> ReadScores()
         {
             try
             {
                 if (File.Exists(fileName))
                 {
+                    highScorePlayers = new List<Player>();
                     using (reader = new StreamReader(fileName))
                     {
                         while (!reader.EndOfStream)
@@ -268,12 +285,13 @@ namespace DoodleJump
                     }
                 }
 
-                highScorePlayers = highScorePlayers.OrderByDescending(r => r.Score).ToList(); // sort by score
+                return highScorePlayers.OrderByDescending(r => r.Score).ToList(); // sort by score
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.GetBaseException().Message);
             }
+            return highScorePlayers;
         }
 
         private void UpdateScores(Player player)
@@ -305,6 +323,8 @@ namespace DoodleJump
                             writer.WriteLine(p.ToString());
                         }
                     }
+
+                    highScorePlayers = new List<Player>();
                 }
             }
             catch (Exception ex)
