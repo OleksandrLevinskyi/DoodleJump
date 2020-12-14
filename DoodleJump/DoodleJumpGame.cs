@@ -1,4 +1,13 @@
-﻿using DoodleJump.Scenes;
+﻿/*
+ * DoodleJumpGame.cs
+ * Doodle Jump Game
+ * 
+ * Revision History
+ *          Oleksandr Levinskyi, 2020.12.06: Created & Imlemented
+ *          Oleksandr Levinskyi, 2020.12.13: Revised & Completed
+ */
+
+using DoodleJump.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,7 +26,7 @@ namespace DoodleJump
     {
         private const int SCREEN_WIDTH = 500;
         private const int SCREEN_HEIGHT = 800;
-        private const int MAX_CAPACITY = 10;
+        private const int MAX_CAPACITY = 10; // in highscores file
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -37,6 +46,7 @@ namespace DoodleJump
         private StreamWriter writer;
         private string fileName = "scores.txt";
 
+        // main menu options
         private enum MainMenu
         {
             Start,
@@ -45,11 +55,17 @@ namespace DoodleJump
             About,
             Quit
         }
+
+        // game over menu options
         private enum GameOverMenu
         {
             PlayAgain,
             MainMenu
         }
+
+        /// <summary>
+        /// default game constructor
+        /// </summary>
         public DoodleJumpGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -124,12 +140,11 @@ namespace DoodleJump
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //    Exit();
-
             // TODO: Add your update logic here
             int selectedIdx = 0;
             KeyboardState ks = Keyboard.GetState();
+
+            // manage menus & scenes
             if (startScene.Enabled)
             {
                 if (oldState.IsKeyDown(Keys.Enter) && ks.IsKeyUp(Keys.Enter))
@@ -250,6 +265,9 @@ namespace DoodleJump
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// create a new action scene
+        /// </summary>
         private void RebootActionScene()
         {
             this.Components.Remove(actionScene);
@@ -260,6 +278,9 @@ namespace DoodleJump
             this.Components.Add(gameOverScene);
         }
 
+        /// <summary>
+        /// create a new highscore scene
+        /// </summary>
         private void RebootHighScoreScene()
         {
             this.Components.Remove(highScoreScene);
@@ -267,6 +288,10 @@ namespace DoodleJump
             this.Components.Add(highScoreScene);
         }
 
+        /// <summary>
+        /// read scores from the file
+        /// </summary>
+        /// <returns>list of players</returns>
         public List<Player> ReadScores()
         {
             try
@@ -295,6 +320,10 @@ namespace DoodleJump
             return highScorePlayers;
         }
 
+        /// <summary>
+        /// updates scores on the file
+        /// </summary>
+        /// <param name="player">player to compare/write</param>
         private void UpdateScores(Player player)
         {
             bool isChanged = false;

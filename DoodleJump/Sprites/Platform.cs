@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Platform.cs
+ * Platform sprite
+ * 
+ * Revision History
+ *          Oleksandr Levinskyi, 2020.12.06: Created & Imlemented
+ *          Oleksandr Levinskyi, 2020.12.13: Revised & Completed
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +18,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.Sprites
 {
+    /// <summary>
+    /// platform types
+    /// </summary>
     public enum PlatfromType
     {
         Original,
@@ -18,18 +30,30 @@ namespace DoodleJump.Sprites
         Disappearing
     }
 
+    /// <summary>
+    /// platform sprite
+    /// </summary>
     public class Platform : Sprite
     {
-        private static Random randomNumGen = new Random();
         private const int MOVE_RANGE = 40;
         private float topBound = 0;
         private float bottomBound = 0;
         private PlatfromType type;
 
-        public float TopBound { get => topBound; set => topBound = value; }
-        public float BottomBound { get => bottomBound; set => bottomBound = value; }
-        public PlatfromType Type { get => type; set => type = value; }
+        public float TopBound { get => topBound; set => topBound = value; } // top bound for MovableVer
+        public float BottomBound { get => bottomBound; set => bottomBound = value; } // bottom bound for MovableVer
+        public PlatfromType Type { get => type; set => type = value; } // platform type
 
+        private static Random randomNumGen = new Random();
+
+        /// <summary>
+        /// sprite constructor, generates random X coordinate of platform position
+        /// </summary>
+        /// <param name="game">game</param>
+        /// <param name="spriteBatch">spriteBatch for drawing</param>
+        /// <param name="texture">sprite background</param>
+        /// <param name="positionY">Y coordinate</param>
+        /// <param name="type">type of the platform</param>
         public Platform(Game game, SpriteBatch spriteBatch, Texture2D texture, float positionY, PlatfromType type = PlatfromType.Original) : base(game, spriteBatch, texture)
         {
             this.position.Y = positionY;
@@ -41,10 +65,15 @@ namespace DoodleJump.Sprites
             this.type = type;
         }
 
+        /// <summary>
+        /// updates the platform position if applicable
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Update(GameTime gameTime)
         {
             if (this.type == PlatfromType.MovableHor)
             {
+                // move platform horizontally
                 if (position.X <= 0 || position.X + texture.Width >= Shared.Stage.X)
                 {
                     speed = -speed;
@@ -53,6 +82,7 @@ namespace DoodleJump.Sprites
             }
             else if (this.type == PlatfromType.MovableVer)
             {
+                // move platform vertically
                 if (position.Y <= topBound || position.Y >= bottomBound)
                 {
                     speed = -speed;
@@ -63,6 +93,10 @@ namespace DoodleJump.Sprites
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// updates position of the platform
+        /// </summary>
+        /// <param name="positionY">Y coordinate</param>
         public void UpdatePosition(float positionY)
         {
             this.position.Y = positionY;
@@ -72,6 +106,10 @@ namespace DoodleJump.Sprites
             bottomBound = position.Y + MOVE_RANGE;
         }
 
+        /// <summary>
+        /// updates bounds of the platform
+        /// </summary>
+        /// <param name="movement">value to update by</param>
         public void UpdateBounds(int movement)
         {
             topBound += movement;

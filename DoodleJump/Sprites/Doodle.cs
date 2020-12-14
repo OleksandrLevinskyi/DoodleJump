@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Doodle.cs
+ * Doodle sprite
+ * 
+ * Revision History
+ *          Oleksandr Levinskyi, 2020.12.06: Created & Imlemented
+ *          Oleksandr Levinskyi, 2020.12.13: Revised & Completed
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +18,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.Sprites
 {
+    /// <summary>
+    /// doodle sprite
+    /// </summary>
     public class Doodle : Sprite
     {
         private const int DOODLE_XSPEED = 5;
@@ -22,6 +34,7 @@ namespace DoodleJump.Sprites
         private const int SPRING_BOOST_JUMPSPEED = 1300;
         private const int SPRING_BOOST_DELAY = 20;
 
+        // doodle possible movement direction
         private enum MovementDirection
         {
             Left,
@@ -29,26 +42,35 @@ namespace DoodleJump.Sprites
             Up
         }
 
-        private int jumpSpeed = INIT_JUMPSPEED;
-        private bool isJumping = false;
-        private bool isFalling = false;
-
         private KeyboardState oldState;
         private Texture2D textureRight;
         private Texture2D textureLeft;
         private Texture2D textureUp;
+
         private int count = 0;
-        private bool isCount = false;
         private int boostCount = 0;
+        private int jumpSpeed = INIT_JUMPSPEED;
+
+        private bool isCount = false;
         private bool isBoostCount = false;
+        private bool isJumping = false;
+        private bool isFalling = false;
 
-        private MovementDirection movementDirection = MovementDirection.Right;
+        private MovementDirection movementDirection = MovementDirection.Right; // default right
 
-        public int JumpSpeed { get => jumpSpeed; set => jumpSpeed = value; }
-        public bool IsJumping { get => isJumping; set => isJumping = value; }
-        public bool IsFalling { get => isFalling; set => isFalling = value; }
-        public Color DoodleColor { get; set; } = Color.White;
+        public int JumpSpeed { get => jumpSpeed; set => jumpSpeed = value; } // jump speed of the doodle
+        public bool IsJumping { get => isJumping; set => isJumping = value; } // whether doodle is jumping
+        public bool IsFalling { get => isFalling; set => isFalling = value; } // whether doodle is falling
+        public Color DoodleColor { get; set; } = Color.White; // doodle color
 
+        /// <summary>
+        /// sprite constructor, initialized necessary values
+        /// </summary>
+        /// <param name="game">game</param>
+        /// <param name="spriteBatch">spriteBatch for drawing</param>
+        /// <param name="textureRight">texture for right movement</param>
+        /// <param name="textureLeft">texture for left movement</param>
+        /// <param name="textureUp">texture for up movement</param>
         public Doodle(Game game, SpriteBatch spriteBatch,
             Texture2D textureRight, Texture2D textureLeft, Texture2D textureUp) : base(game, spriteBatch, textureRight)
         {
@@ -60,6 +82,10 @@ namespace DoodleJump.Sprites
             this.textureUp = textureUp;
         }
 
+        /// <summary>
+        /// draws a doodle
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -67,6 +93,10 @@ namespace DoodleJump.Sprites
             spriteBatch.End();
         }
 
+        /// <summary>
+        /// updates doodle properties to adjust its behaviour
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Update(GameTime gameTime)
         {
             if (isCount)
@@ -78,6 +108,7 @@ namespace DoodleJump.Sprites
             KeyboardState ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Left) && movementDirection != MovementDirection.Up)
             {
+                // move left
                 position.X -= speed.X;
                 if (position.X + texture.Width / 2 <= 0)
                 {
@@ -88,6 +119,7 @@ namespace DoodleJump.Sprites
             }
             if (ks.IsKeyDown(Keys.Right) && movementDirection != MovementDirection.Up)
             {
+                // move right
                 position.X += speed.X;
                 if (position.X + texture.Width / 2 >= Shared.Stage.X)
                 {
@@ -99,6 +131,7 @@ namespace DoodleJump.Sprites
 
             if (oldState.IsKeyUp(Keys.Space) && ks.IsKeyDown(Keys.Space))
             {
+                // shoot
                 this.texture = textureUp;
                 this.position.Y -= textureUp.Height - textureRight.Height;
                 movementDirection = MovementDirection.Up;
@@ -107,6 +140,7 @@ namespace DoodleJump.Sprites
             }
             else if (count >= DELAY)
             {
+                // stop shot
                 this.texture = textureRight;
                 this.position.Y += textureUp.Height - textureRight.Height;
                 movementDirection = MovementDirection.Right;
@@ -154,18 +188,29 @@ namespace DoodleJump.Sprites
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// adjusts doodle behaviour if spring was hit
+        /// </summary>
         public void SpringBoost()
         {
             this.JumpSpeed = SPRING_BOOST_JUMPSPEED;
             isBoostCount = true;
         }
 
+        /// <summary>
+        /// gets doodle lower bound
+        /// </summary>
+        /// <returns>doodle lower bound</returns>
         public float GetLowerBound()
         {
             float lowerBound = position.Y + texture.Height;
             return lowerBound;
         }
 
+        /// <summary>
+        /// gets doodle feet bound
+        /// </summary>
+        /// <returns>doodle feet bound</returns>
         public Rectangle GetFeetBound()
         {
             Rectangle feetBound = new Rectangle((int)position.X + FEET_GAP,

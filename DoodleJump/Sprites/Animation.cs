@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Animation.cs
+ * Animation sprite
+ * 
+ * Revision History
+ *          Oleksandr Levinskyi, 2020.12.06: Created & Imlemented
+ *          Oleksandr Levinskyi, 2020.12.13: Revised & Completed
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +18,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.Sprites
 {
+    /// <summary>
+    /// animation sprite
+    /// </summary>
     public class Animation : Sprite
     {
         private Vector2 dimension; // size of the frame
@@ -20,9 +32,18 @@ namespace DoodleJump.Sprites
         private int rows = 0;
         private int cols = 0;
 
-        public int Rows { get => rows; }
-        public int Cols { get => cols; }
+        public int Rows { get => rows; } // rows in animation
+        public int Cols { get => cols; } // columns in animation
 
+        /// <summary>
+        /// sprite constructor, initialized necessary values
+        /// </summary>
+        /// <param name="game">game</param>
+        /// <param name="spriteBatch">spriteBatch for drawing</param>
+        /// <param name="texture">sprite background</param>
+        /// <param name="rows">rows in animation</param>
+        /// <param name="cols">columns in animation</param>
+        /// <param name="delay">animation delay</param>
         public Animation(Game game, SpriteBatch spriteBatch,
             Texture2D texture, int rows, int cols, int delay) : base(game, spriteBatch, texture)
         {
@@ -39,6 +60,10 @@ namespace DoodleJump.Sprites
             CreateFrames(); // create frames
         }
 
+        /// <summary>
+        /// draws animation
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -50,6 +75,10 @@ namespace DoodleJump.Sprites
             spriteBatch.End();
         }
 
+        /// <summary>
+        /// updates animation properties to make it animate
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Update(GameTime gameTime)
         {
             delayCounter++;
@@ -67,6 +96,9 @@ namespace DoodleJump.Sprites
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// creates frames from a spritesheet
+        /// </summary>
         private void CreateFrames()
         {
             frames = new List<Rectangle>();
@@ -82,6 +114,9 @@ namespace DoodleJump.Sprites
             }
         }
 
+        /// <summary>
+        /// starts animation
+        /// </summary>
         public void Start()
         {
             this.Visible = true;
@@ -89,6 +124,9 @@ namespace DoodleJump.Sprites
             frameIdx = -1;
         }
 
+        /// <summary>
+        /// hides animation
+        /// </summary>
         public void Hide()
         {
             this.Visible = false;
