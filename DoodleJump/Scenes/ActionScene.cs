@@ -62,7 +62,7 @@ namespace DoodleJump.Scenes
         private DoodleBoosterColMng doodleBoosterColMng;
         private DoodleMonsterColMng doodleMonsterColMng;
         private List<DoodlePlatformColMng> doodlePlatformColMngs;
-        private List<MonsterBooletColMng> monsterBooletColMngs;
+        private List<MonsterBulletColMng> monsterBooletColMngs;
 
         private List<Platform> platforms;
         private List<Bullet> bullets;
@@ -110,7 +110,7 @@ namespace DoodleJump.Scenes
             this.game = game;
             platforms = new List<Platform>();
             doodlePlatformColMngs = new List<DoodlePlatformColMng>();
-            monsterBooletColMngs = new List<MonsterBooletColMng>();
+            monsterBooletColMngs = new List<MonsterBulletColMng>();
             bullets = new List<Bullet>();
 
             gameOverSound = game.Content.Load<SoundEffect>("Sounds/game_over");
@@ -165,7 +165,7 @@ namespace DoodleJump.Scenes
                 bullets.Add(bullet);
                 this.Components.Add(bullet);
 
-                MonsterBooletColMng monsterBooletColMng = new MonsterBooletColMng(game, monster, monsterDefeatSound, bullet);
+                MonsterBulletColMng monsterBooletColMng = new MonsterBulletColMng(game, monster, monsterDefeatSound, bullet);
                 monsterBooletColMngs.Add(monsterBooletColMng);
                 this.Components.Add(monsterBooletColMng);
             }
@@ -459,7 +459,7 @@ namespace DoodleJump.Scenes
                 colMng.Enabled = false;
             }
 
-            foreach (MonsterBooletColMng colMng in monsterBooletColMngs)
+            foreach (MonsterBulletColMng colMng in monsterBooletColMngs)
             {
                 colMng.Enabled = false;
             }

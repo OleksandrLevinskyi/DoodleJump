@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * DoodleBoosterColMng.cs
+ * Doodle & Booster collision manager
+ * 
+ * Revision History
+ *          Oleksandr Levinskyi, 2020.12.06: Created & Imlemented
+ *          Oleksandr Levinskyi, 2020.12.13: Revised & Completed
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +20,30 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.CollisionManagers
 {
+    /// <summary>
+    /// tracks collision of Doodle & Booster
+    /// </summary>
     public class DoodleBoosterColMng : DoodleColMng
     {
-        private const int BOOSTER_COUNT = 240;
-        private const int ROCKET_SPEED = 400;
-        private int counter = 0;
-        private bool isCounterEnabled = true;
         private Booster booster;
-        public Animation BoosterAnimation { get; set; }
+        public Animation BoosterAnimation { get; set; } // animation to play when doodle & booster collide
 
+        /// <summary>
+        /// constructor to create a collision manager
+        /// </summary>
+        /// <param name="game">game</param>
+        /// <param name="doodle">doodle sprite</param>
+        /// <param name="hitSound">sound when hit</param>
+        /// <param name="booster">booster sprite</param>
         public DoodleBoosterColMng(Game game, Doodle doodle, SoundEffect hitSound, Booster booster) : base(game, doodle, hitSound)
         {
             this.booster = booster;
         }
 
-
+        /// <summary>
+        /// checks for collision between Doodle & Booster
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Update(GameTime gameTime)
         {
             if (booster.Type == BoosterType.Spring)

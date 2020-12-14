@@ -46,11 +46,11 @@
     <Compile Include="CollisionManagers\DoodleMonsterColMng.cs" />
     <Compile Include="CollisionManagers\DoodlePlatformColMng.cs" />
     <Compile Include="CollisionManagers\DoodleAnimatedPlatfromColMng.cs" />
-    <Compile Include="CollisionManagers\MonsterBooletColMng.cs" />
+    <Compile Include="CollisionManagers\MonsterBulletColMng.cs" />
     <Compile Include="ParallaxBackground.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Scenes\GameOverScene.cs" />
-    <Compile Include="Components\ActionScene\TopBar.cs" />
+    <Compile Include="Components\TopBar.cs" />
     <Compile Include="Components\BasicString.cs" />
     <Compile Include="Components\InputManager.cs" />
     <Compile Include="Components\MenuComponent.cs" />
@@ -86,9 +86,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\StartScene\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
