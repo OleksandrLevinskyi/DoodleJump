@@ -84,7 +84,6 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\SharpDX.XInput.xml
-C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.csprojAssemblyReference.cache
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.csproj.CopyComplete
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.exe
@@ -120,3 +119,8 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\highscore_scene.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\background_music.wma
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\background_music.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\DoodleJump.exe.manifest
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\DoodleJump.application
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.exe.manifest
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\obj\x86\Debug\DoodleJump.application
