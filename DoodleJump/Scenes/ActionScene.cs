@@ -37,6 +37,7 @@ namespace DoodleJump.Scenes
         private const int SPRITE_COUNT = 5;
         private const double COEFFICIENT = 1.000035;
         private const int MAX_CHANGE_BOUND = 20000;
+        private const int PLATFORM_CHANGE_BOUND = 5000;
         private const int SPRING_ANIM_ROWS = 2;
         private const int SPRING_ANIM_COLS = 5;
         private const int WOOD_ANIM_ROWS = 2;
@@ -44,7 +45,7 @@ namespace DoodleJump.Scenes
         private const int DIS_ANIM_DIM = 4;
         private const int ANIMATION_DELAY = 5;
         private const int SPEED = 1;
-        private const int MONSTER_GAP = 2000; // height difference to generate a new monster
+        private const int MONSTER_GAP = 3000; // height difference to generate a new monster
         private const float PARALLAX_DIFF = 1.5f;
 
         private double maxPlatfromGap = 0;
@@ -61,7 +62,7 @@ namespace DoodleJump.Scenes
         private DoodleBoosterColMng doodleBoosterColMng;
         private DoodleMonsterColMng doodleMonsterColMng;
         private List<DoodlePlatformColMng> doodlePlatformColMngs;
-        private List<MonsterBooletColMng> monsterBooletColMng;
+        private List<MonsterBooletColMng> monsterBooletColMngs;
 
         private List<Platform> platforms;
         private List<Bullet> bullets;
@@ -109,7 +110,7 @@ namespace DoodleJump.Scenes
             this.game = game;
             platforms = new List<Platform>();
             doodlePlatformColMngs = new List<DoodlePlatformColMng>();
-            monsterBooletColMng = new List<MonsterBooletColMng>();
+            monsterBooletColMngs = new List<MonsterBooletColMng>();
             bullets = new List<Bullet>();
 
             gameOverSound = game.Content.Load<SoundEffect>("Sounds/game_over");
@@ -147,7 +148,7 @@ namespace DoodleJump.Scenes
             }
 
             monsterTexture = game.Content.Load<Texture2D>("Images/monster");
-            monster = new Monster(game, spriteBatch, monsterTexture, new Vector2(Shared.Stage.X / 2, Shared.Stage.Y / 2));
+            monster = new Monster(game, spriteBatch, monsterTexture, new Vector2(Shared.Stage.X / 2, MONSTER_GAP));
             this.Components.Add(monster);
 
             SoundEffect monsterHitSound = game.Content.Load<SoundEffect>("Sounds/monster_crash"); // if doodle hits the monster
@@ -165,6 +166,7 @@ namespace DoodleJump.Scenes
                 this.Components.Add(bullet);
 
                 MonsterBooletColMng monsterBooletColMng = new MonsterBooletColMng(game, monster, monsterDefeatSound, bullet);
+                monsterBooletColMngs.Add(monsterBooletColMng);
                 this.Components.Add(monsterBooletColMng);
             }
 
@@ -191,17 +193,17 @@ namespace DoodleJump.Scenes
             disapPlatAnim = new Animation(game, spriteBatch, disappearingPlatformSpriteSheet, DIS_ANIM_DIM, DIS_ANIM_DIM, ANIMATION_DELAY);
             this.Components.Add(disapPlatAnim);
 
-            SpriteFont standardItemFont = game.Content.Load<SpriteFont>("Fonts/standardItemFont");
-            Texture2D topbarTexture = game.Content.Load<Texture2D>("Images/topbar");
-            topbar = new TopBar(game, spriteBatch, topbarTexture, standardItemFont);
-            this.Components.Add(topbar);
-
             // put doodle on the first platform
             doodle.Position = new Vector2(platforms[0].Position.X + platforms[0].Texture.Width / 2 - doodle.Texture.Width / 2,
                 platforms[0].Position.Y - doodle.Texture.Height);
 
-            // add doodle the last one to make it front-most on the screen
+            // add doodle one of the last to make it placed on the front
             this.Components.Add(doodle);
+
+            SpriteFont standardItemFont = game.Content.Load<SpriteFont>("Fonts/standardItemFont");
+            Texture2D topbarTexture = game.Content.Load<Texture2D>("Images/topbar");
+            topbar = new TopBar(game, spriteBatch, topbarTexture, standardItemFont);
+            this.Components.Add(topbar);
         }
 
         public override void Draw(GameTime gameTime)
@@ -361,7 +363,7 @@ namespace DoodleJump.Scenes
                     currPlatform.Texture = ordinaryPlatformTexture;
                     if (!booster.IsUsed)
                     {
-                        booster.MasterPlatform = currPlatform;//////////////////////////////////////////////
+                        booster.MasterPlatform = currPlatform;
                         booster.IsUsed = true;
                     }
                     break;
@@ -416,7 +418,6 @@ namespace DoodleJump.Scenes
 
             // all heights - allow original
             possiblePlatfromTypes.Add(PlatfromType.Original);
-            possiblePlatfromTypes.Add(PlatfromType.MovableHor);
 
             // up to 10k in score & the previous one is not wooden - allow breaking
             if (MAX_CHANGE_BOUND / 2 >= score && platforms[topIdx].Type != PlatfromType.Wooden)
@@ -424,10 +425,21 @@ namespace DoodleJump.Scenes
                 possiblePlatfromTypes.Add(PlatfromType.Wooden);
             }
 
-            // if above 10k - allow movable & disappearing
-            if (score >= MAX_CHANGE_BOUND / 2)
+            // if between 0-5k OR 10k+ - allow movable horizontally
+            if (score <= PLATFORM_CHANGE_BOUND || score >= MAX_CHANGE_BOUND / 2)
+            {
+                possiblePlatfromTypes.Add(PlatfromType.MovableHor);
+            }
+
+            // if between 5-10k OR 15k+ - allow movable vertically
+            if ((score <= MAX_CHANGE_BOUND / 2 && score >= PLATFORM_CHANGE_BOUND) || score >= MAX_CHANGE_BOUND / 2 + PLATFORM_CHANGE_BOUND)
             {
                 possiblePlatfromTypes.Add(PlatfromType.MovableVer);
+            }
+
+            // if between 10-15k OR 20k+ - allow disappearing
+            if ((score >= MAX_CHANGE_BOUND / 2 && score <= MAX_CHANGE_BOUND / 2 + PLATFORM_CHANGE_BOUND) || score >= MAX_CHANGE_BOUND)
+            {
                 possiblePlatfromTypes.Add(PlatfromType.Disappearing);
             }
 
@@ -438,10 +450,6 @@ namespace DoodleJump.Scenes
 
         private void DisableAllColMngs()
         {
-            //private DoodleBoosterColMng doodleBoosterColMng;
-            //private DoodleMonsterColMng doodleMonsterColMng;
-            //private List<DoodlePlatformColMng> doodlePlatformColMngs;
-
             doodleBoosterColMng.Enabled = false;
             doodleMonsterColMng.Enabled = false;
             doodleMonsterColMng.PauseSong();
@@ -449,6 +457,16 @@ namespace DoodleJump.Scenes
             foreach (DoodlePlatformColMng colMng in doodlePlatformColMngs)
             {
                 colMng.Enabled = false;
+            }
+
+            foreach (MonsterBooletColMng colMng in monsterBooletColMngs)
+            {
+                colMng.Enabled = false;
+            }
+
+            foreach (Bullet bullet in bullets)
+            {
+                bullet.Enabled = false;
             }
         }
     }

@@ -26,9 +26,9 @@ namespace DoodleJump.Sprites
         private float bottomBound = 0;
         private PlatfromType type;
 
-        public PlatfromType Type { get => type; set => type = value; }
         public float TopBound { get => topBound; set => topBound = value; }
         public float BottomBound { get => bottomBound; set => bottomBound = value; }
+        public PlatfromType Type { get => type; set => type = value; }
 
         public Platform(Game game, SpriteBatch spriteBatch, Texture2D texture, float positionY, PlatfromType type = PlatfromType.Original) : base(game, spriteBatch, texture)
         {

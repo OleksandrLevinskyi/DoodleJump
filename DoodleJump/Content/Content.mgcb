@@ -243,18 +243,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/platform.png
 
-#begin Images/rocks.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/rocks.png
-
 #begin Images/spring.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -326,6 +314,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/wooden_platfrom_spritesheet.png
+
+#begin Sounds/background_music.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/background_music.mp3
 
 #begin Sounds/bullet.wav
 /importer:WavImporter

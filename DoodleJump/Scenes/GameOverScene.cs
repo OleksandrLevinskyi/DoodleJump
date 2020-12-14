@@ -59,7 +59,7 @@ namespace DoodleJump.Scenes
             this.Components.Add(nameString);
 
             menu = new MenuComponent(game, spriteBatch, standardItemFont, chosenItemFont, menuItems);
-            menu.Position = GetMiddlePosition(chosenItemFont, menuItems[0], menu.Position.Y);
+            menu.Position = GetMiddlePosition(chosenItemFont, menuItems[0], menu.Position.Y + 2 * LINE_HEIGHT);
             this.Components.Add(menu);
 
             input = new InputManager(game, spriteBatch, standardItemFont, Color.Black);

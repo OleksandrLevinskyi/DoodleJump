@@ -118,3 +118,5 @@ C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\gameover_scene_editmode.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\highscore_screen.xnb
 C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Images\highscore_scene.xnb
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\background_music.wma
+C:\Users\User\Desktop\Final Project\OLevinskyiFinalProject\DoodleJump\DoodleJump\bin\Windows\x86\Debug\Content\Sounds\background_music.xnb

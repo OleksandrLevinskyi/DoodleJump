@@ -14,7 +14,7 @@ namespace DoodleJump.Sprites
         private const int BULLET_YSPEED = -30;
         public Bullet(Game game, SpriteBatch spriteBatch, Texture2D texture) : base(game, spriteBatch, texture)
         {
-            position = new Vector2(0, -texture.Height);
+            position = new Vector2(-2*texture.Width, -texture.Height);
             speed = new Vector2(0, BULLET_YSPEED);
         }
 
@@ -22,7 +22,7 @@ namespace DoodleJump.Sprites
         {
             if (position.Y <= 0)
             {
-                position = new Vector2(0, -texture.Height);
+                position = new Vector2(-2*texture.Width, -texture.Height);
             }
             else
             {
