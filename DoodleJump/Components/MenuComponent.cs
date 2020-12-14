@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * MenuComponent.cs
+ * Tool for creating Menus
+ * 
+ * Revision History
+ *          Oleksandr Levinskyi, 2020.12.06: Created & Imlemented
+ *          Oleksandr Levinskyi, 2020.12.13: Revised & Completed
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +18,34 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.Components
 {
+    /// <summary>
+    /// tool that helps creating interactive menus
+    /// </summary>
     public class MenuComponent : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
         private SpriteFont standardItemFont, chosenItemFont;
-        private List<string> menuItems;
-        private int selectedIdx;
         private Vector2 position;
-        private Color standardItemColor = Color.Black;
-        private Color chosenItemColor = Color.Red;
         private KeyboardState oldState;
 
-        public int SelectedIdx { get => selectedIdx; set => selectedIdx = value; }
-        public Vector2 Position { get => position; set => position = value; }
+        private Color standardItemColor = Color.Black;
+        private Color chosenItemColor = Color.Red;
 
+        private List<string> menuItems;
+
+        private int selectedIdx;
+
+        public int SelectedIdx { get => selectedIdx; set => selectedIdx = value; } // currently selected item's index in the menu 
+        public Vector2 Position { get => position; set => position = value; } // position of the tool
+
+        /// <summary>
+        /// constructor to create a tool
+        /// </summary>
+        /// <param name="game">game</param>
+        /// <param name="spriteBatch">spriteBatch for drawing</param>
+        /// <param name="standardItemFont"></param>
+        /// <param name="chosenItemFont"></param>
+        /// <param name="menuItems"></param>
         public MenuComponent(Game game, SpriteBatch spriteBatch,
             SpriteFont standardItemFont, SpriteFont chosenItemFont,
             string[] menuItems) : base(game)
@@ -37,9 +60,14 @@ namespace DoodleJump.Components
             this.Show();
         }
 
+        /// <summary>
+        /// draws a menu with the currently selected item highlighted
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Draw(GameTime gameTime)
         {
             Vector2 tempPosition = position;
+
             spriteBatch.Begin();
             for (int i = 0; i < menuItems.Count; i++)
             {
@@ -59,6 +87,10 @@ namespace DoodleJump.Components
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// updates the selected index based on the user input
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Update(GameTime gameTime)
         {
             KeyboardState ks = Keyboard.GetState();
@@ -86,12 +118,18 @@ namespace DoodleJump.Components
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// hides & disables the menu
+        /// </summary>
         public virtual void Hide()
         {
             this.Enabled = false;
             this.Visible = false;
         }
 
+        /// <summary>
+        /// shows & enables the menu
+        /// </summary>
         public virtual void Show()
         {
             this.Enabled = true;

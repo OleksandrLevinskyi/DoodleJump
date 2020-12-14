@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * InputManager.cs
+ * Tool for inputting values
+ * 
+ * Revision History
+ *          Oleksandr Levinskyi, 2020.12.06: Created & Imlemented
+ *          Oleksandr Levinskyi, 2020.12.13: Revised & Completed
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,21 +18,32 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DoodleJump.Components
 {
+    /// <summary>
+    /// tool that helps fetching input from the user
+    /// </summary>
     public class InputManager : DrawableGameComponent
     {
-        private string message = "";
-        private BasicString basicString;
         private const int MAX_NAME_LENGTH = 10;
         private const int ASCII_MIN = 97;
         private const int ASCII_MAX = 122;
+
+        private string message = "";
         private bool disableUpdate = true;
 
+        private BasicString basicString;
         private KeyboardState oldState;
 
-        public string Message { get => message; set => message = value; }
-        public bool DisableUpdate { get => disableUpdate; set => disableUpdate = value; }
-        public Vector2 Position { get; set; }
+        public string Message { get => message; set => message = value; } // message of the tool
+        public bool DisableUpdate { get => disableUpdate; set => disableUpdate = value; } // mode of the tool (none/edit)
+        public Vector2 Position { get; set; } // position of the tool
 
+        /// <summary>
+        /// constructor to create a tool
+        /// </summary>
+        /// <param name="game">game</param>
+        /// <param name="spriteBatch">spriteBatch for drawing</param>
+        /// <param name="font">font type</param>
+        /// <param name="color">color of the message</param>
         public InputManager(Game game,
             SpriteBatch spriteBatch,
             SpriteFont font,
@@ -32,6 +52,10 @@ namespace DoodleJump.Components
             basicString = new BasicString(game, spriteBatch, font, message, color);
         }
 
+        /// <summary>
+        /// draws the typed message
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Draw(GameTime gameTime)
         {
             basicString.Draw(gameTime);
@@ -39,10 +63,15 @@ namespace DoodleJump.Components
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// fetches input from the user (lowercase letters allowed only, up to 10 chars) if in edit mode
+        /// </summary>
+        /// <param name="gameTime">provides a snapshot of timing values</param>
         public override void Update(GameTime gameTime)
         {
             if (!DisableUpdate)
             {
+                // fetch the user input
                 KeyboardState ks = Keyboard.GetState();
 
                 Keys? key = ks.GetPressedKeys().FirstOrDefault();
