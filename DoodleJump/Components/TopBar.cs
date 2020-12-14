@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DoodleJump.Components.ActionScene
+namespace DoodleJump.Components
 {
     /// <summary>
     /// top bar with highscore on the left
