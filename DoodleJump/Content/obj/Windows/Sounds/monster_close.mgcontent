@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/monster_close.mp3</SourceFile>
+  <SourceFile>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/Sounds/monster_close.mp3</SourceFile>
   <SourceTime>2020-12-09T01:02:00.1013836-05:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/monster_close.xnb</DestFile>
-  <DestTime>2020-12-13T20:00:08.6410327-05:00</DestTime>
+  <DestFile>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/monster_close.xnb</DestFile>
+  <DestTime>2021-01-17T00:32:42.5547495-05:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/monster_close.wma</string>
+    <string>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/monster_close.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>

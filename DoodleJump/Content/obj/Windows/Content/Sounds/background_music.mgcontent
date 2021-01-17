@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/background_music.mp3</SourceFile>
-  <SourceTime>2020-12-13T19:59:10.0105553-05:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Content/Sounds/background_music.xnb</DestFile>
-  <DestTime>2020-12-13T20:00:38.2994387-05:00</DestTime>
+  <SourceFile>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/Sounds/background_music.mp3</SourceFile>
+  <SourceTime>2021-01-17T00:30:35.8919041-05:00</SourceTime>
+  <DestFile>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/bin/Windows/Content/Sounds/background_music.xnb</DestFile>
+  <DestTime>2021-01-17T00:32:53.5963213-05:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Content/Sounds/background_music.wma</string>
+    <string>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/bin/Windows/Content/Sounds/background_music.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>

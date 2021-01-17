@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/Sounds/monster_crash.wav</SourceFile>
+  <SourceFile>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/Sounds/monster_crash.wav</SourceFile>
   <SourceTime>2020-12-11T02:05:20.9369677-05:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Final Project/OLevinskyiFinalProject/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/monster_crash.xnb</DestFile>
-  <DestTime>2020-12-13T20:00:09.0890314-05:00</DestTime>
+  <DestFile>C:/Users/User/Desktop/Doodle Jump/DoodleJump/DoodleJump/Content/bin/Windows/Sounds/monster_crash.xnb</DestFile>
+  <DestTime>2021-01-17T00:32:42.9827513-05:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

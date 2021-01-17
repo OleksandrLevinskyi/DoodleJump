@@ -6,5 +6,5 @@ doodle	10058
 ae	8403
 utah	7571
 yoyo	7355
+alex	6412
 yep	5031
-hihi	4640
